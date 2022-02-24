@@ -48,17 +48,24 @@
 </html>
 
 <script>
-
+// 아까 답글 에서 폼데이터 전송이 안되었던 오류를 고쳐야해요.. 아뇨 아까 강사님이 다같이 오류나서 고쳐주셨던 부분이이요,, 
 function goWrite()
 {
    var frmData = new FormData(document.myform);
    console.log( frmData );
-      
+   
+   // 쿼리스트링만들어서 직렬화한다음에 데이터를 저전송하는거에요
+   var queryString = $("form[name=myform]").serialize(); 
+   //파일전송없을때 안정적으로 감
+   console.log(queryString);
+   
+   
    $.ajax({
       url:"${commonURL}/member/login_proc",
-      data:frmData,
-      contentType:false,
-      processData:false,
+      data:queryString,
+      //data:frmData,
+      //contentType:false,
+      //processData:false,
       type:"POST",
    })
    .done( (result)=>{

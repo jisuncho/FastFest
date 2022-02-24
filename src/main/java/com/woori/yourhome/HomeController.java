@@ -36,4 +36,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/nav")
+	public String nav() {
+		return "/include/nav2";
+	}
 }

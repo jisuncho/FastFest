@@ -82,8 +82,12 @@ function goFindId()
 
 function goCancel()
 {
-  var frm = document.form;
-   frm.action="/board/list";
+	// document - HTML 객체 라고 생각하시면 되요.. 여기에 지금 이 페이지에 있는 HTML 태그 정보가 다 들어있어요
+	// document.태그name 을 가져오면 이태그의 데이터를 가져올수도 있고 조작할수도 있어요
+	// <form name="myform" id="myform">
+	// commonURL 네 이 변수는 어디서 가져오죠? 그러게요 신기한친구네
+  var frm = document.myform;
+   frm.action="${commonURL}/board/list";
    frm.submit();
 }
 </script>
