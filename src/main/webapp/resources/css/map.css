@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.OUTLINE {
+	stroke-linejoin: round;
+	stroke: #ffffff;
+	stroke-width: 1;
+}
+
+.TEXT {
+	font-size: 30px;
+	font-weight: bold;
+	text-anchor: middle;
+	alignment-baseline: middle;
+	font-family: 'Gamja Flower', cursive;
+}
+
+#CD11 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD26 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD27 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD28 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD29 {
+	fill: #ffffff;
+}
+
+#CD30 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD31 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD36 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD41 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+	z-index: 100;
+}
+
+#CD42 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD43 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+	z-index: 100;
+}
+
+#CD44 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD45 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD46 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD47 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD48 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
+
+#CD50 {
+	fill: #ffffff;
+	stroke: #c4c4c4;
+	stroke-width: 5;
+}
