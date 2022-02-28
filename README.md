@@ -3,7 +3,7 @@
 
 ## 220221
 * 주제 선정 (전국 각지의 축제에 대한 정보 및 날짜 제공)
-
+* 프로젝트 기획안 작성
 * 상세 메뉴 선정
 
 ## 220222
@@ -29,6 +29,10 @@
 - 메인화면 디자인
 
   ![FF_](https://user-images.githubusercontent.com/95202440/155690518-0835f6aa-e97a-43ce-89c1-a3fb4b326bc3.png)
+
+- 페이지별 메뉴 디자인
+
+  ![로고](https://user-images.githubusercontent.com/95202440/155953637-69bd71f4-e487-40f0-9600-d9eadb5679a1.PNG)
 
 - 지도 관련 이미지 png => svg 로 확정
 
@@ -89,3 +93,19 @@
 ![지도1](https://user-images.githubusercontent.com/95202440/155688554-57ff0680-97d5-4023-91ea-73824af68819.PNG)
 
 ![지도2](https://user-images.githubusercontent.com/95202440/155688665-23d683e6-7bed-4b6a-a43d-23db12c66013.PNG)
+
+## 220228
+
+* 달력디자인 (지도라인,색상 구성)
+
+* 달력, 지도 화면구성 ( 한 화면에 같이 보이도록)
+
+  ![0228](https://user-images.githubusercontent.com/95202440/155954295-8bf09869-00c5-4ec8-a59b-93eae260a43f.PNG)
+
+  * 향후과제
+    * 글씨체 변경 (로컬에만 저장 되어있는 글씨체이므로) 
+    * 달력 코드  + 지도 코드 합침  
+      * web-app> resources> css> css파일 따로 생성 (calendar.css, map.css)
+    * 지도 크기 고정
+    * 지도에 ●표시로 지역별 축제표기(지역별 컬러값 다르게)
+    * 축제데이터 DB생성
