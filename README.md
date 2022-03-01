@@ -32,7 +32,7 @@
 
 - 페이지별 메뉴 디자인
 
-  ![로고](https://user-images.githubusercontent.com/95202440/155953637-69bd71f4-e487-40f0-9600-d9eadb5679a1.PNG)
+  ![로고](https://user-images.githubusercontent.com/95202440/155953637-69bd71f4-e487-40f0-9600-d9eadb5679a1.PNG) 
 
 - 지도 관련 이미지 png => svg 로 확정
 
@@ -90,9 +90,7 @@
     - <a href> 링크 수정하기
     -  하단 리스트 기능 추가
 
-![지도1](https://user-images.githubusercontent.com/95202440/155688554-57ff0680-97d5-4023-91ea-73824af68819.PNG)
-
-![지도2](https://user-images.githubusercontent.com/95202440/155688665-23d683e6-7bed-4b6a-a43d-23db12c66013.PNG)
+![지도12](https://user-images.githubusercontent.com/95202440/155957588-75ac9ee8-f772-400f-acfa-8b1f3ac3e27d.png)
 
 ## 220228
 
