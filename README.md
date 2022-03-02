@@ -105,5 +105,28 @@
     * 달력 코드  + 지도 코드 합침  
       * web-app> resources> css> css파일 따로 생성 (calendar.css, map.css)
     * 지도 크기 고정
-    * 지도에 ●표시로 지역별 축제표기(지역별 컬러값 다르게)
+    * 달력에 ●표시로 지역별 축제 툴팁표기(지역별 컬러값 다르게)
+    * 지도에서 지역 선택 시 하단에 축제 리스트 출력
+      * resouces폴더밑에 image폴더 생성
     * 축제데이터 DB생성
+
+## 220302
+
+* 지도 크기 고정
+
+```javascript
+.container {
+	display: flex;
+	height:500px;
+	width:1000px;
+}
+```
+
+- 축제 데이터 DB생성 및 데이터 삽입
+- Festdata 테이블 연동 
+  - dto, dao, service,mapper 파일 구현
+- 향후과제
+  - 달력에 ●표시로 지역별 축제 툴팁표기(지역별 컬러값 다르게)
+  - 지도에서 지역 선택 시 하단에 축제 리스트 출력
+  - resouces폴더밑에 image폴더 생성
+
