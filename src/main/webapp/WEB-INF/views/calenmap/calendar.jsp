@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
+<%@page import="java.util.*"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@page import="com.woori.yourhome.calenmap.*"%>
 <html lang="ko">
 <head>
 <title>캘린더</title>
@@ -29,6 +30,8 @@
 .container {
 	display: flex;
 	height:500px;
+	width:1000px;
+
 }
 </style>
 </head>
@@ -181,6 +184,7 @@
 	var region_colors = [ "#c4c4c4", "#ff7c35", "#29d352", "#ff6575",
 			"#b06af6", "#3c95ff", "#f6bc06", "#3e53d8", "#f46ef7", "#35e3cf" ];
 	var flag = false;
+	
 
 	//서울&인천&경기
 	document
