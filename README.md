@@ -139,3 +139,112 @@
 - 향후과제
   - 달력에 ●표시로 지역별 축제 툴팁표기(지역별 컬러값 다르게)
   - 지도에서 지역 선택시 하단에 축제 리스트 출력 (div로 데이터 출력은 확인)
+
+## 220304
+
+- ~~MapDto -> DateDto로 파일명 변경하면서 생긴 에러 수정~~
+
+  => DateData파일로 그냥 구현하기로하고 복원 함 
+
+  => FFgit3 에서 작업하고 기본 프로젝트로 사용함
+
+  => 깃허브 FastFest - main에서 작업할 예정
+
+- resouces폴더밑에 image폴더에 이미지 들여넣기
+
+- 달력에 지역별 다른색상의 ●표시, 축제명&end날짜 툴팁표기 
+
+  - (CalendarController.java)
+  
+  ```javascript
+  List<FestDataDto> list = service.getList(searchDto);
+  Map<String, String> colorMap = new HashMap<String, String>();
+  colorMap.put("서울특별시", "#ff7c35"); ....      //지역마다 색상 주기
+  ──────────────────────────────────────────────────────────────────
+  for (MapDto dateDto : dateList) {
+      String festDetail = "";
+      for (FestDataDto fdto : list) {
+          String tmp="";
+          if(!dateDto.getDate().isEmpty()) {					
+              tmp = String.format("%02d", Integer.parseInt(dateDto.getDate()));
+      }  // 비어있지않은 날짜중에 한자리수면 0을 넣어서 2자리로 맞춰주기
+  
+      if (fdto.getFES_STARTDATE().split("-")[2].equals(tmp)) {
+          dateDto.setSchedule(fdto.getFES_NAME());
+  
+          // area 별로 festDetail 변경
+          //String.format("%02d", dateDto.getDate())
+          festDetail += "<div class=\"tooltip\">\r\n"
+              + "<div style=\"border-radius:75px; width:10px; height:10px; margin:2px; background-color:"     // ●표시
+              + colorMap.get(fdto.getFES_AREA()) + "; display:inline-block\"></div>\r\n"
+               + "<span class=\"tooltiptext\">" + fdto.getFES_NAME()+':'+'~'+ 				fdto.getFES_ENDDATE()+" </span>\r\n" + "</div>"; //툴팁에 나타낼 정보
+              dateDto.setSchedule_detail(festDetail);
+          }
+      }
+  }
+  ```
+  
+  - (calendar.jsp) : 툴팁 기본코드
+
+   ```java script
+   /* Tooltip container */
+   .tooltip {
+     position: relative;
+     display: inline-block;
+   }
+   
+   /* Tooltip text */
+   .tooltip .tooltiptext {
+     visibility: hidden;
+     width: 350px;
+     background-color: #fd6aa5;
+     color: #fff;
+     text-align: center;
+     padding: 5px 0;
+     border-radius: 6px;
+    
+     /* Position the tooltip text - see examples below! */
+     position: absolute;
+     z-index: 1;
+     bottom: 100%;
+     left: 50%;
+     margin-left: -60px;
+   }
+   
+   /* Show the tooltip text when you mouse over the tooltip container */
+   .tooltip:hover .tooltiptext {
+     visibility: visible;
+   }
+   ```
+
+  - (Calendarmap.xml) : 날짜에서 '-' 기호 빼고 년&월 만 가져오기
+
+     ```
+     <select id="Calenmap_getList"  parameterType="MapDto"  resultType="FestDataDto">	
+  		select
+			FES_NAME
+  			,FES_PLACE
+  			,FES_STARTDATE
+  			,FES_ENDDATE
+  			,FES_DOMAIN
+  			,FES_AREA
+  			,FES_INFO
+  			,FES_PHONE
+  			,FES_ADDRESS
+  			,FES_IMG
+  			,FEST_DATE
+  		from pro1_festdata
+  		where FES_STARTDATE like concat('${year}','-' ,'${month}', '%')
+  	</select>
+     ```
+  
+     ​	
+
+
+![지도툴팁기능](https://user-images.githubusercontent.com/95202440/156756655-b013e697-c40d-495c-98b6-a5f51e9b2ad3.JPG)
+
+- 향후과제
+	- 툴팁글씨체(깨져보여서) , 전체 글씨체 변경
+	- 확대된 지도 수정하기
+	- 지도의 지역명 마다 링크
+		- 하단에 이미지와 함께 리스트로 출력
