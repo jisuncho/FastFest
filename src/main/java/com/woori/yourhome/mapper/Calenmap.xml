@@ -3,7 +3,7 @@
 	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	 
-	 
+ 
  <mapper namespace="Calenmap">
 
 	<!-- 쿼리를 xml로 작성하고 id:식별값  
@@ -27,5 +27,6 @@
 			,FES_IMG
 			,FEST_DATE
 		from pro1_festdata
+		where FES_STARTDATE like concat('${year}','-' ,'${month}', '%')
 	</select>
 </mapper>

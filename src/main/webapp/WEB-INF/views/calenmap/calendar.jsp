@@ -10,13 +10,13 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
 <!-- map start-->
-<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gamja+Flower:400" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 <!-- map end -->
-
+ 
 
 <link href="<%=request.getContextPath()%>/resources/css/calendar.css"
 	rel="stylesheet" />
@@ -29,6 +29,35 @@
 .container {
 	display: flex;
 	height:500px;
+	width:950px;
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 350px;
+  background-color: #fd6aa5;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 </style>
 </head>
@@ -78,13 +107,13 @@
 									<c:when test="${dateList.value=='today'}">
 										<td class="today">
 											<div class="date">${dateList.date}</div>
-											<div></div>
+											<div>${dateList.schedule_detail}</div>
 										</td>
 									</c:when>
 									<c:when test="${date_status.index%7==6}">
 										<td class="sat_day">
 											<div class="sat">${dateList.date}</div>
-											<div></div>
+											<div>${dateList.schedule_detail}</div>
 										</td>
 									</c:when>
 									<c:when test="${date_status.index%7==0}">
@@ -92,13 +121,13 @@
 						<tr>
 							<td class="sun_day">
 								<div class="sun">${dateList.date}</div>
-								<div></div>
+								<div>${dateList.schedule_detail}</div>
 							</td>
 							</c:when>
 							<c:otherwise>
 								<td class="normal_day">
 									<div class="date">${dateList.date}</div>
-									<div></div>
+									<div>${dateList.schedule_detail}</div>
 								</td>
 							</c:otherwise>
 							</c:choose>
