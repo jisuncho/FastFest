@@ -30,12 +30,12 @@
       <beans:property name="maxInMemorySize" value="10485760"></beans:property>
    </beans:bean>
    
-   <interceptors>
-   		<interceptor>
+   <!--<interceptors>
+   		 <interceptor>
    			<mapping path="/**/w*"></mapping>
    			<mapping path="/**/m*"></mapping>
    			<beans:bean id="loginInterceptor" class="com.woori.yourhome.common.LoginInterceptor"/>
-   		</interceptor>
-   </interceptors>
+   		</interceptor> 
+   </interceptors>-->
 	
 </beans:beans>
