@@ -1,5 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.woori.yourhome.common.*" %>
+
+<%
+request.setAttribute("commonURL", request.getContextPath());
+
+// request 객체에 저장된 데이터를 ${변수명} 이렇게 가져다 쓸수있어요
+// 
+
+String userid= StringUtil.nullToValue(session.getAttribute("userid"), "");
+String username= StringUtil.nullToValue(session.getAttribute("username"), "");
+String email= StringUtil.nullToValue(session.getAttribute("email"), "");
+String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +24,17 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="/resources/css/style.css">
+	<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/style.css">
 	
 </head>
 <body>
 <section class="ftco-section">
 		<div class="container">
-			<div class="row justify-content-center">
+			<img src="<%=request.getContextPath() %>/resources2/images/logo.png" height="200" style="text-align:left;">
+			<div class="d-flex justify-content-start">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Website menu #05</h2>
+				 
+					<!-- <h2 class="heading-section">Website menu #05</h2> -->
 				</div>
 			</div>
 		</div>
@@ -31,11 +47,31 @@
 		      </button>
 		      <div class="collapse navbar-collapse" id="ftco-nav">
 		        <ul class="navbar-nav ml-auto mr-md-3">
-		        	<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-		        	<li class="nav-item"><a href="#" class="nav-link">Accessories</a></li>
-		        	<li class="nav-item"><a href="#" class="nav-link">Shop</a></li>
-		        	<li class="nav-item"><a href="#" class="nav-link">Products</a></li>
-		          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+		        	           <li class="nav-item">
+             <a class="nav-link active" href="${commonURL}/board/list">게시판</a>
+           </li>
+          <li class="nav-item">
+             <a class="nav-link" href="${commonURL}/gallery/list">갤러리</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link active" href="${commonURL}/freeboard/list">답글게시판</a>
+           </li>
+         
+           <%if(userid.equals("")) {%>
+           <li class="nav-item">
+             <a class="nav-link" href="${commonURL}/member/join">회원가입</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="${commonURL}/member/login">로그인</a>
+           </li>
+           <%}else{%>
+           <li class="nav-item">
+             <a class="nav-link" href="${commonURL}/member/myinfo">내정보</a>
+           </li>
+            <li class="nav-item">
+             <a class="nav-link" href="${commonURL}/member/logout">로그아웃</a>
+           </li>
+           <%} %>
 		          <li class="dropdown nav-item d-md-flex align-items-center">
                 <a href="#" class="dropdown-toggle nav-link d-flex align-items-center justify-content-center icon-cart p-0" id="dropdown04" data-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-shopping-cart"></i>
@@ -60,10 +96,10 @@
 
 	</section>
 
-	<script src="/resources/js/jquery.min.js"></script>
-  <script src="/resources/js/popper.js"></script>
-  <script src="/resources/js/bootstrap.min.js"></script>
-  <script src="/resources/js/main.js"></script>
+	<script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js/popper.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
+  <script src="<%=request.getContextPath() %>/resources/js/main.js"></script>
   
 </body>
 </html>
