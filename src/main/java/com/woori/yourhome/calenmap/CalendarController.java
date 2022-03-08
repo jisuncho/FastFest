@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CalendarController {
@@ -45,7 +46,8 @@ public class CalendarController {
 
 		// 날짜 삽입
 		for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
-			if (i == today_info.get("today")) {
+			// if (i == today_info.get("today")) {
+			if (i == 8) {
 				calendarData = new MapDto(String.valueOf(mapdto.getYear()), String.valueOf(mapdto.getMonth()),
 						String.valueOf(i), "today");
 			} else {
@@ -72,45 +74,62 @@ public class CalendarController {
 		// 배열에 담음
 		MapDto searchDto = new MapDto();
 
-		searchDto.setYear("2022");
-		searchDto.setMonth("03");
+		searchDto.setYear(mapdto.getYear());
+		searchDto.setMonth(String.format("%02d", Integer.parseInt(mapdto.getMonth())+1));
+
 
 		// 서비스 -> list 호출
-		List<FestDataDto> list = service.getList(searchDto);
+		// List<FestDataDto> list = service.getList(searchDto);
+		List<FestDataDto> boardList = service.getList(searchDto);
+
+		// area 맵
+		/*
+		 * <text id="LCD41" class="TEXT" x="216" y="245" >서울&인천&경기</text> <text
+		 * id="LCD42" class="TEXT" x="370" y="179" >강원도</text> <text id="LCD44"
+		 * class="TEXT" x="105" y="449" >충남&세종&대전</text> <text id="LCD43" class="TEXT"
+		 * x="294" y="381" >충북</text> <text id="LCD47" class="TEXT" x="447" y="460"
+		 * >경북&대구&울산</text> <text id="LCD45" class="TEXT" x="179" y="592" >전북</text>
+		 * <text id="LCD46" class="TEXT" x="138" y="764" >전남&광주</text> <text id="LCD48"
+		 * class="TEXT" x="367" y="672" >경남&부산</text> <text id="LCD50" class="TEXT"
+		 * x="76" y="1070" >제주</text>
+		 * 
+		 */
 
 		Map<String, String> colorMap = new HashMap<String, String>();
 
 		colorMap.put("서울특별시", "#ff7c35");
 		colorMap.put("인천광역시", "#ff7c35");
 		colorMap.put("경기도", "#ff7c35");
-		
+
 		colorMap.put("강원도", "#29d352");
 
 		colorMap.put("충청남도", "#ff6575");
 		colorMap.put("세종특별자치시", "#ff6575");
 		colorMap.put("대전광역시", "#ff6575");
-		
+
 		colorMap.put("충청남도", "#b06af6");
-		
+
 		colorMap.put("경상북도", "#3c95ff");
 		colorMap.put("대구광역시", "#3c95ff");
 		colorMap.put("울산광역시", "#3c95ff");
-		
+
 		colorMap.put("전라북도", "#F6bc06");
-		
+
 		colorMap.put("전라남도", "#3253d8");
 		colorMap.put("광주광역시", "#3253d8");
-		
+
 		colorMap.put("경상남도", "#f462f7");
 		colorMap.put("부산광역시", "#f462f7");
-		
+
 		colorMap.put("제주특별자치도", "#35e3cf");
+
+		System.out.println("[dateList]-----------------" + dateList);
 
 		for (MapDto dateDto : dateList) {
 			String festDetail = "";
-			for (FestDataDto fdto : list) {
-				String tmp="";
-				if(!dateDto.getDate().isEmpty()) {					
+			for (FestDataDto fdto : boardList) {
+				String tmp = "";
+				if (!dateDto.getDate().isEmpty()) {
 					tmp = String.format("%02d", Integer.parseInt(dateDto.getDate()));
 				}
 
@@ -118,18 +137,21 @@ public class CalendarController {
 					dateDto.setSchedule(fdto.getFES_NAME());
 
 					// area 별로 festDetail 변경
-					//String.format("%02d", dateDto.getDate())
+					// String.format("%02d", dateDto.getDate())
 					festDetail += "<div class=\"tooltip\">\r\n"
 							+ "<div style=\"border-radius:75px; width:10px; height:10px; margin:2px; background-color:"
 							+ colorMap.get(fdto.getFES_AREA()) + "; display:inline-block\"></div>\r\n"
-							+ "<span class=\"tooltiptext\">" + fdto.getFES_NAME()+':'+'~'+ fdto.getFES_ENDDATE()+" </span>\r\n" + "</div>";
+							+ "<span class=\"tooltiptext\">" + fdto.getFES_NAME() + ':' + fdto.getFES_STARTDATE()+'~' + fdto.getFES_ENDDATE()
+							+ " </span>\r\n" + "</div>";
 					dateDto.setSchedule_detail(festDetail);
 				}
 			}
 		}
 
 		// model 에 데이터 담고
-		model.addAttribute("mapList", list);
+		//model.addAttribute("mapList", boardList);
+
+		//System.out.println("------------------------->" + boardList);
 
 		model.addAttribute("dateList", dateList); // 날짜 데이터 배열
 		model.addAttribute("today_info", today_info);
@@ -137,16 +159,25 @@ public class CalendarController {
 	}
 
 	@RequestMapping("/calendar/list")
-	public String getList(Model model) {
-		// 서비스 -> list 호출
-		List<FestDataDto> list = service.getList(null);
+	@ResponseBody
+	public List<FestDataDto> getList(Model model, MapDto mapdto) {
+		
+		
+		System.out.println("==========================1============" + mapdto);
 
-		System.out.println("---------->" + list);
+		mapdto.setMonth(String.format("%02d", Integer.parseInt(mapdto.getMonth())));
+		
+		System.out.println("==========================3============" + mapdto);
+
+		List<FestDataDto> boardList = service.getList(mapdto);
+		
+		System.out.println("---------->" + boardList);
 		// model 에 데이터 담고
 
-		model.addAttribute("mapList", list);
+		//model.addAttribute("mapList", boardList);
 		// jsp 로 전송
-		return "calenmap/maplist";
+		//return "calenmap/maplist";
+		return boardList;
 	}
 
 }

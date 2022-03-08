@@ -18,6 +18,16 @@ public class MapDto {
 	//				하여 사용하면 보다 편리하고 깨끗하게 코드를 만들 수 있다.
 	String schedule = "";
 	String schedule_detail = "";
+	String areaId="";
+
+	
+	public String getAreaId() {
+		return areaId;
+	}
+
+	public void setAreaId(String areaId) {
+		this.areaId = areaId;
+	}
 
 	public String getYear() {
 		return year;
@@ -168,8 +178,9 @@ public class MapDto {
 	@Override
 	public String toString() {
 		return "MapDto [year=" + year + ", month=" + month + ", date=" + date + ", value=" + value + ", schedule="
-				+ schedule + ", schedule_detail=" + schedule_detail + "]";
+				+ schedule + ", schedule_detail=" + schedule_detail + ", areaId=" + areaId + "]";
 	}
 
+	
 	
 }
