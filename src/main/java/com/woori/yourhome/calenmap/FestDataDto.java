@@ -12,6 +12,8 @@ public class FestDataDto {
 	String FES_ADDRESS=" ";
 	String FES_IMG =" ";
 	String FEST_DATE=" ";
+	
+	
 	public String getFES_NAME() {
 		return FES_NAME;
 	}

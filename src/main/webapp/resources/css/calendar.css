@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
 
 body {
 	scrollbar-face-color: #ffffff;
@@ -12,32 +13,35 @@ body {
 	margin-right: "0px";
 	margin-top: "0px";
 	margin-bottom: "0px";
-	font-family: "카페24 숑숑";
-	font-size: 20pt;
-
+	font-family: 'Dongle', sans-serif;
+	
+	
 }
 
 
+<!-- day날짜-->
 td {
-	font-family: "카페24 숑숑";
-	font-size: 15pt;
-	color: #000000;
+	
+	font-color: #4c4c4c;
 	border: 1px ;
 	solid: #b4b5b5;
 	
 }
 
 th {
-	font-family: "카페24 숑숑";
-	font-size: 15pt;
-	color: #000000;
+	
+	font-color: #4c4c4c;
 	border: 1px ;
 	solid: #b4b5b5;
 }
 
+.dots{
+	display:inline;
+	
+}
+
 select {
-	font-family: "카페24 숑숑";
-	font-size: 20pt;
+	
 	color: #ffffff;
 }
 
@@ -47,39 +51,35 @@ select {
 }
 
 A:link {
-	font-size:20pt;
-	font-family: "카페24 숑숑";
+	font-size:25pt;
+	
 	color: #000000;
 	text-decoration: none;
 }
 
 A:visited {
-	font-size: 15pt;
-	font-family: "카페24 숑숑";
+	font-size: 20pt;
+	
 	color: #000000;
 	text-decoration: none;
 }
 
 A:active {
-	font-size: 15pt;
-	font-family: "카페24 숑숑";
+	font-size: 25pt;
+	
 	color: #fb5d94;
 	text-decoration: none;
 }
 
 A:hover {
-	font-size: 20pt;
-	font-family: "카페24 숑숑";
+	font-size: 25pt;
 	color: #fb5d94;
 	text-decoration: none;
 }
-
+<!-- 월~일요일 -->
 .day {
-	width: 100px;
 	height: 30px;
-	font-weight: bold;
-	font-family: "카페24 숑숑";
-	font-size: 17px;
+	font-size:25pt;
 	font-weight: bold;
 	text-align: center;
 	color : #4c4c4c;
@@ -103,8 +103,8 @@ A:hover {
 }
 
 .calendar {
-	width: 667.500px;
-	height: 611.500px;
+	width: 550px;
+	height: 600px;
 	margin-left: 50px;
 }
 
@@ -112,12 +112,12 @@ A:hover {
 	margin-top: 100px;
 	margin-bottom: 30px;
 	text-align: center;
-	font-size: 25px;
+	font-size: 25pt;
 	vertical-align: middle;
 }
 
 .calendar_body {
-	width: 100%;
+	width: 500px;
 	background-color: #FFFFFF;
 	border: 1px solid #c0c0c0;
 	margin-bottom: 50px;
@@ -131,7 +131,7 @@ A:hover {
 	background-color: #bfe3ea;
 	text-align: left;
 	vertical-align: top;
-	
+
 }
 
 .calendar_body .date {
@@ -152,7 +152,7 @@ A:hover {
 .calendar_body .sat_day .sat {
 	color: #4abdc8;
 	font-weight: bold;
-	font-size: 20px;
+
 	padding-left: 3px;
 	padding-top: 3px;
 }
@@ -168,7 +168,7 @@ A:hover {
 .calendar_body .sun_day .sun {
 	color: #f96c9d;
 	font-weight: bold;
-	font-size: 20px;
+
 	padding-left: 3px;
 	padding-top: 3px;
 }
@@ -179,21 +179,22 @@ A:hover {
 	background-color: #ffffff;
 	vertical-align: top;
 	text-align: left;
+
 	
 }
 
 .before_after_month {
 	margin: 10px;
 	font-weight: bold;
-	font-size : 20;
+
 }
 
 .before_after_year {
 	font-weight: bold;
-	font-size : 20;
+
 }
 
 .this_month {
 	margin: 10px;
-	font-size : 20;
+
 }
