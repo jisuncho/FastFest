@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+body {
+	scrollbar-face-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-3dlight-color: #ff0080;
+	scrollbar-shadow-color: #f6f6f6;
+	scrollbar-darkshadow-color: #f6f6f6;
+	scrollbar-track-color: #FFFFFF;
+	scrollbar-arrow-color: #f6f6f6;
+	margin-left: "0px";
+	margin-right: "0px";
+	margin-top: "0px";
+	margin-bottom: "0px";
+	font-family: "카페24 숑숑";
+	font-size: 20pt;
+
+}
+
+
+td {
+	font-family: "카페24 숑숑";
+	font-size: 15pt;
+	color: #000000;
+	border: 1px ;
+	solid: #b4b5b5;
+	
+}
+
+th {
+	font-family: "카페24 숑숑";
+	font-size: 15pt;
+	color: #000000;
+	border: 1px ;
+	solid: #b4b5b5;
+}
+
+select {
+	font-family: "카페24 숑숑";
+	font-size: 20pt;
+	color: #ffffff;
+}
+
+.divDotText {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+A:link {
+	font-size:20pt;
+	font-family: "카페24 숑숑";
+	color: #000000;
+	text-decoration: none;
+}
+
+A:visited {
+	font-size: 15pt;
+	font-family: "카페24 숑숑";
+	color: #000000;
+	text-decoration: none;
+}
+
+A:active {
+	font-size: 15pt;
+	font-family: "카페24 숑숑";
+	color: #fb5d94;
+	text-decoration: none;
+}
+
+A:hover {
+	font-size: 20pt;
+	font-family: "카페24 숑숑";
+	color: #fb5d94;
+	text-decoration: none;
+}
+
+.day {
+	width: 100px;
+	height: 30px;
+	font-weight: bold;
+	font-family: "카페24 숑숑";
+	font-size: 17px;
+	font-weight: bold;
+	text-align: center;
+	color : #4c4c4c;
+}
+
+.sat {
+	color: #4abdc8;
+}
+
+.sun {
+	color: #f96c9d;
+}
+
+.today_button_div {
+	float: right;
+}
+
+.today_button {
+	width: 100px;
+	height: 30px;
+}
+
+.calendar {
+	width: 667.500px;
+	height: 611.500px;
+	margin-left: 50px;
+}
+
+.navigation {
+	margin-top: 100px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 25px;
+	vertical-align: middle;
+}
+
+.calendar_body {
+	width: 100%;
+	background-color: #FFFFFF;
+	border: 1px solid #c0c0c0;
+	margin-bottom: 50px;
+	border-collapse: collapse;
+
+}
+
+.calendar_body .today {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #bfe3ea;
+	text-align: left;
+	vertical-align: top;
+	
+}
+
+.calendar_body .date {
+	font-weight: bold;
+	padding-left: 3px;
+	padding-top: 3px;
+	
+}
+
+.calendar_body .sat_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	text-align: left;
+	vertical-align: top;
+}
+
+.calendar_body .sat_day .sat {
+	color: #4abdc8;
+	font-weight: bold;
+	font-size: 20px;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.calendar_body .sun_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	text-align: left;
+	vertical-align: top;
+}
+
+.calendar_body .sun_day .sun {
+	color: #f96c9d;
+	font-weight: bold;
+	font-size: 20px;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.calendar_body .normal_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	vertical-align: top;
+	text-align: left;
+	
+}
+
+.before_after_month {
+	margin: 10px;
+	font-weight: bold;
+	font-size : 20;
+}
+
+.before_after_year {
+	font-weight: bold;
+	font-size : 20;
+}
+
+.this_month {
+	margin: 10px;
+	font-size : 20;
+}
