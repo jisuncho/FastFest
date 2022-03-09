@@ -13,7 +13,7 @@
     	<typeAlias alias="GalleryDto" type="com.woori.yourhome.gallery.GalleryDto"/>	
     	<typeAlias alias="MemberDto" type="com.woori.yourhome.member.MemberDto"/>	
     	<typeAlias alias="CommentDto" type="com.woori.yourhome.comment.CommentDto"/>
-    	<typeAlias alias="MapDto" type="com.woori.yourhome.calenmap.MapDto"/>
+    	<typeAlias alias="DateDto" type="com.woori.yourhome.calenmap.DateDto"/>
     	<typeAlias alias="FestDataDto" type="com.woori.yourhome.calenmap.FestDataDto"/>
     		
 	</typeAliases>

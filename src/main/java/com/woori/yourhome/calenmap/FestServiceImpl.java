@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 
 // MapServiceImpl mapService = new MapServiceImpl();
 // MapService mapService = new MapService();
-@Service("mapService")
-public class MapServiceImpl implements MapService{
+@Service("festService")
+public class FestServiceImpl implements FestService{
 
 	//@Autowired
 	
 	// MapDao dao = mapDao;
-	@Resource(name="mapDao")
-	MapDao dao;
+	@Resource(name="festDao")
+	FestDao dao;
 	
 	@Override
-	public List<FestDataDto> getList(MapDto dto) {
+	public List<FestDataDto> getList(DateDto dto) {
 		return dao.getList(dto);
 	}
 

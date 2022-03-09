@@ -11,47 +11,50 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.woori.yourhome.board.BoardDto;
 
 @Controller
 public class CalendarController {
 
 	// MapService service = mapService;
-	@Resource(name = "mapService")
-	MapService service;
+	@Resource(name = "festService")
+	FestService service;
 
 	@RequestMapping(value = "calendar", method = RequestMethod.GET)
-	public String calendar(Model model, HttpServletRequest request, MapDto mapdto) {
+	public String calendar(Model model, HttpServletRequest request, DateDto datedto) {
 
 		Calendar cal = Calendar.getInstance();
-		MapDto calendarData;
+		DateDto calendarData;
 		// 검색 날짜
-		if (mapdto.getDate().equals("") && mapdto.getMonth().equals("")) {
-			mapdto = new MapDto(String.valueOf(cal.get(Calendar.YEAR)), String.valueOf(cal.get(Calendar.MONTH)),
+		if (datedto.getDate().equals("") && datedto.getMonth().equals("")) {
+			datedto = new DateDto(String.valueOf(cal.get(Calendar.YEAR)), String.valueOf(cal.get(Calendar.MONTH)),
 					String.valueOf(cal.get(Calendar.DATE)), null);
 		}
 		// 검색 날짜 end
 
-		Map<String, Integer> today_info = mapdto.today_info(mapdto);
-		List<MapDto> dateList = new ArrayList<MapDto>();
+		Map<String, Integer> today_info = datedto.today_info(datedto);
+		List<DateDto> dateList = new ArrayList<DateDto>();
 
 		// 실질적인 달력 데이터 리스트에 데이터 삽입 시작.
 		// 일단 시작 인덱스까지 아무것도 없는 데이터 삽입
 		for (int i = 1; i < today_info.get("start"); i++) {
-			calendarData = new MapDto(null, null, null, null);
+			calendarData = new DateDto(null, null, null, null);
 			dateList.add(calendarData);
 		}
 
 		// 날짜 삽입
 		for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
-			// if (i == today_info.get("today")) {
-			if (i == 8) {
-				calendarData = new MapDto(String.valueOf(mapdto.getYear()), String.valueOf(mapdto.getMonth()),
+			 if (i == today_info.get("today")) {
+			//if(i==6) {
+				calendarData = new DateDto(String.valueOf(datedto.getYear()), String.valueOf(datedto.getMonth()),
 						String.valueOf(i), "today");
 			} else {
-				calendarData = new MapDto(String.valueOf(mapdto.getYear()), String.valueOf(mapdto.getMonth()),
+				calendarData = new DateDto(String.valueOf(datedto.getYear()), String.valueOf(datedto.getMonth()),
 						String.valueOf(i), "normal_date");
 			}
 			dateList.add(calendarData);
@@ -63,19 +66,22 @@ public class CalendarController {
 		if (dateList.size() % 7 != 0) {
 
 			for (int i = 0; i < index; i++) {
-				calendarData = new MapDto(null, null, null, null);
+				calendarData = new DateDto(null, null, null, null);
 				dateList.add(calendarData);
 			}
 		}
 
 		System.out.println(dateList);
 		// System.out.println(dateList);
+		for(DateDto dto:dateList) {
+			System.out.println(dto);
+		}
 
 		// 배열에 담음
-		MapDto searchDto = new MapDto();
+		DateDto searchDto = new DateDto();
 
-		searchDto.setYear(mapdto.getYear());
-		searchDto.setMonth(String.format("%02d", Integer.parseInt(mapdto.getMonth())+1));
+		searchDto.setYear(datedto.getYear());
+		searchDto.setMonth(String.format("%02d", Integer.parseInt(datedto.getMonth())+1));
 
 
 		// 서비스 -> list 호출
@@ -125,7 +131,8 @@ public class CalendarController {
 
 		System.out.println("[dateList]-----------------" + dateList);
 
-		for (MapDto dateDto : dateList) {
+		// 달력에서 ●툴팁 표시하는 태그생성
+		for (DateDto dateDto : dateList) {
 			String festDetail = "";
 			for (FestDataDto fdto : boardList) {
 				String tmp = "";
@@ -147,6 +154,7 @@ public class CalendarController {
 				}
 			}
 		}
+	
 
 		// model 에 데이터 담고
 		//model.addAttribute("mapList", boardList);
@@ -160,16 +168,16 @@ public class CalendarController {
 
 	@RequestMapping("/calendar/list")
 	@ResponseBody
-	public List<FestDataDto> getList(Model model, MapDto mapdto) {
+	public List<FestDataDto> getList(Model model, DateDto datedto) {
 		
 		
-		System.out.println("==========================1============" + mapdto);
+		System.out.println("==========================1============" + datedto);
 
-		mapdto.setMonth(String.format("%02d", Integer.parseInt(mapdto.getMonth())));
+		datedto.setMonth(String.format("%02d", Integer.parseInt(datedto.getMonth())));
 		
-		System.out.println("==========================3============" + mapdto);
+		System.out.println("==========================3============" + datedto);
 
-		List<FestDataDto> boardList = service.getList(mapdto);
+		List<FestDataDto> boardList = service.getList(datedto);
 		
 		System.out.println("---------->" + boardList);
 		// model 에 데이터 담고
@@ -178,6 +186,16 @@ public class CalendarController {
 		// jsp 로 전송
 		//return "calenmap/maplist";
 		return boardList;
+	}
+	
+	@RequestMapping("/calendar/kakaomap")
+	public String kakaomap(String addr, String fes_name, Model model) {
+		
+		model.addAttribute("addr", addr);
+		model.addAttribute("fes_name", fes_name);
+		
+		
+		return "calenmap/kakaomap";
 	}
 
 }
