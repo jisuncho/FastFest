@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MapDto {
+public class DateDto {
 
 	String year = "";
 	String month = "";
@@ -78,7 +78,7 @@ public class MapDto {
 	}
 
 	// 날짜에 관련된 달력정보를 가지는 메서드
-	public Map<String, Integer> today_info(MapDto mapdto) {
+	public Map<String, Integer> today_info(DateDto mapdto) {
 		// 날짜 캘린더 함수에 삽입.
 		Map<String, Integer> today_Data = new HashMap<String, Integer>();
 		Calendar cal = Calendar.getInstance();
@@ -151,7 +151,7 @@ public class MapDto {
 	}
 	
 	// 스케줄 사용시 사용될 생성자
-	public MapDto(String year, String month, String date, String value, String schedule, String schedule_detail) {
+	public DateDto(String year, String month, String date, String value, String schedule, String schedule_detail) {
 
 		this.year = year;
 		this.month = month;
@@ -163,7 +163,7 @@ public class MapDto {
 	}
 
 	// 달력만 사용시 사용될 생성자
-	public MapDto(String year, String month, String date, String value) {
+	public DateDto(String year, String month, String date, String value) {
 		if ((month != null && month != "") && (date != null && date != "")) {
 			this.year = year;
 			this.month = month;
@@ -172,7 +172,7 @@ public class MapDto {
 		}
 	}
 
-	public MapDto() {
+	public DateDto() {
 	}
 
 	@Override

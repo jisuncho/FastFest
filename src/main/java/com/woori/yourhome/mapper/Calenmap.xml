@@ -13,7 +13,7 @@
 	<!-- if test="key=='1'"  - 이렇게 쓰면 안된다 인식안된다 -->
 	
 	<!--<select id="Board_getList"  parameterType="BoardDto"  resultType="BoardDto"> -->
- 	<select id="Calenmap_getList"  parameterType="MapDto"  resultType="FestDataDto">	
+ 	<select id="Calenmap_getList"  parameterType="DateDto"  resultType="FestDataDto">	
 		select
 			FES_NAME
 			,FES_PLACE

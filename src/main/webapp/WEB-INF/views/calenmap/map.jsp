@@ -4,8 +4,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
 	text{
 		font-family: 'Dongle', sans-serif;
-		
 	}
+	
+
 </style>
 <div class="map" style="margin:auto">
 
@@ -18,7 +19,7 @@
 			</feMerge> 
 		</filter> 
 	</defs> 
-	<g id="group" filter="url(#dropshadow)">
+	<g id="group" filter="url(#dropshadow)" style="cursor:zoom-in">
 	 <path id="CD11" onclick="getList(1)" class="OUTLINE"
 		d=" M 178 231 l -4 2 -4 3 -1 0 0 1 -3 1 -4 -5 -4 0 -6 1 -4 3 -2 -1 -1 -1 -3 2 -3 -3 -1 -3 -2 -3 0 0 -1 -2 -3 2 -3 1 -2 -4 0 -8 -3 -1 0 0 0 0 0 0 -2 -1 -3 -2 2 -4 3 -3 0 -1 0 0 0 0 0 -1 1 0 4 2 7 1 2 -2 0 1 2 0 1 -4 2 -8 7 -1 4 2 0 -3 1 -1 2 -4 3 -4 2 0 3 2 7 2 2 8 1 4 1 1 0 0 0 2 0 2 0 1 0 0 -1 6 3 0 8 -1 0 5 -4 3 -1 5 z " />
 	<path id="CD26" onclick="getList(8)" class="OUTLINE"
@@ -58,23 +59,45 @@
 	<!--<text id="LCD28" class="TEXT" x="67" y="177">인천광역시</text>--> <!--<text id="LCD29" class="TEXT" x="127" y="707">광주광역시</text>-->
 	<!--<text id="LCD30" class="TEXT" x="221" y="463">대전광역시</text>--> <!--<text id="LCD31" class="TEXT" x="531" y="622">울산광역시</text>-->
 	<!--<text id="LCD36" class="TEXT" x="199" y="418">세종특별자치시</text>-->
-	<text id="LCD41" class="TEXT" x="110" y="175" >서울&인천&경기</text>
-	<text id="LCD42" class="TEXT" x="290" y="140" >강원도</text> 
-	<text id="LCD44" class="TEXT" x="80" y="360" >충남&세종&대전</text>
-	<text id="LCD43" class="TEXT" x="220" y="330" >충북</text>
-	<text id="LCD47" class="TEXT" x="367" y="380" >경북&대구&울산</text>
-	<text id="LCD45" class="TEXT" x="150" y="492" >전북</text>
-	<text id="LCD46" class="TEXT" x="125" y="620" >전남&광주</text>
-	<text id="LCD48" class="TEXT" x="300" y="550" >경남&부산</text>
-	<text id="LCD50" class="TEXT" x="71" y="890" >제주</text>
-	<text id="LCD51" class="TEXT" x="650" y="175" >독도</text>  
+	<text id="LCD41" style="cursor:alias" onclick="getList(1)" class="TEXT" x="110" y="175" >서울&인천&경기</text>
+	<text id="LCD42" style="cursor:alias" onclick="getList(2)"class="TEXT" x="290" y="140" >강원도</text> 
+	<text id="LCD44" style="cursor:alias" onclick="getList(3)"class="TEXT" x="80" y="360" >충남&세종&대전</text>
+	<text id="LCD43" style="cursor:alias" onclick="getList(4)"class="TEXT" x="220" y="330" >충북</text>
+	<text id="LCD47" style="cursor:alias" onclick="getList(5)"class="TEXT" x="367" y="380" >경북&대구&울산</text>
+	<text id="LCD45" style="cursor:alias" onclick="getList(6)"class="TEXT" x="150" y="492" >전북</text>
+	<text id="LCD46" style="cursor:alias" onclick="getList(7)"class="TEXT" x="125" y="620" >전남&광주</text>
+	<text id="LCD48" style="cursor:alias" onclick="getList(8)"class="TEXT" x="300" y="550" >경남&부산</text>
+	<text id="LCD50" style="cursor:alias" onclick="getList(9)"class="TEXT" x="71" y="890" >제주</text>
+	<text id="LCD51" style="cursor:alias" onclick="getList(5)" class="TEXT" x="650" y="175" >독도</text>  
 	</g>
  </svg>
 </div>
 
 
 <script>
-			
+
+function mapColorInit() {
+	document.getElementById("CD11").style.stroke = region_colors[0];
+	document.getElementById("CD26").style.stroke = region_colors[0];
+	document.getElementById("CD27").style.stroke = region_colors[0];
+	document.getElementById("CD28").style.stroke = region_colors[0];
+	document.getElementById("CD29").style.stroke = region_colors[0];
+	document.getElementById("CD30").style.stroke = region_colors[0];
+	document.getElementById("CD31").style.stroke = region_colors[0];
+	document.getElementById("CD36").style.stroke = region_colors[0];
+	document.getElementById("CD42").style.stroke = region_colors[0];
+	document.getElementById("CD41").style.stroke = region_colors[0];
+	document.getElementById("CD43").style.stroke = region_colors[0];
+	document.getElementById("CD44").style.stroke = region_colors[0];
+	document.getElementById("CD45").style.stroke = region_colors[0];
+	document.getElementById("CD46").style.stroke = region_colors[0];
+	document.getElementById("CD47").style.stroke = region_colors[0];
+	document.getElementById("CD48").style.stroke = region_colors[0];
+	document.getElementById("CD50").style.stroke = region_colors[0];
+}
+	
+
+// 지역을 클릭해서 areaId를 가져와서 축제 리스트를 출력하는 부분
 function getList(areaId){
 
 	// calendarFrm
@@ -89,10 +112,6 @@ function getList(areaId){
       type:"POST",
     })
     .done( (result)=>{
-        
-    	console.log(1111111111111);
-      console.log(result.length);
-      console.log(22222222222222);
       
       if (result.length==0){
     	  document.getElementById("h2sub").innerText = "해당 지역에 축제가 없습니다";
@@ -105,21 +124,29 @@ function getList(areaId){
      
       result.forEach( (item) => {
     	  const image_url = "'/yourhome/resources/images/" + item.fes_IMG+"'";
-    	  console.log(image_url);
-    	  var data = "<div id='cards' class='courses-container' style= 'margin-left: 150px; margin-bottom:80px; width:1000px; height:100px'>";
+    	  const mapimage_url = "'/yourhome/resources/images/별.png'";
+    	  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+"'";
+    	  
+    	  console.log(map_url);
+    	  var data = "<div onclick=mapview('"+item.fes_ADDRESS+"') id='cards' class='courses-container' style= 'margin-left: 150px; margin-bottom:80px; width:1000px; height:100px'>";
       		data += "<div class='course' style='width:900px ; height:150px;'>";
       		data += '<div style="width:600px; z-index:100; background-size: cover; background-image:url('+image_url+');" class="course-preview"></div>';
       		data += "<div class='course-info' style='margin-left:5px; margin-bottom:5px'>";
       		data += "<h5 class='card-title' style='padding:-100px; margin-top:5px; margin-bottom:5px'>이달의 "+item.fes_AREA+" 행사</h5>";
       		data += "<p class='card-text' style='margin-top:5px; margin-bottom:5px'>"+item.fes_NAME+"<br/>" + item.fes_STARTDATE+" ~ "+item.fes_ENDDATE+"<br/>장소 : " +item.fes_PLACE+"</p>";
-      		data += "<button class='btn' style='width:100px; padding:2px'><a href='"+item.fes_DOMAIN+"'><span style='font-size:10pt'>홈페이지</span></a></button>";
+      		data += '<button class="btn2" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
+      		data += "<button class='btn' style='width:100px; padding:2px;'><a href='"+item.fes_DOMAIN+"'><span style='font-size:18pt'>홈페이지</span></a></button>";
       		data += " </div> </div> </div>";
       		
       		document.getElementById("imagediv").style.display = "none";
       		$("#festboard").append(data);
+      		
+      		
+           
       })
-      
-      
+
+   	window.scrollTo(0, document.body.scrollHeight);
+
     })
     .fail( (error)=>{
        console.log(error);
@@ -137,7 +164,7 @@ function getList(areaId){
 			.getElementById("CD41")
 			.addEventListener(
 					"mouseover",
-					function(event) {
+					function(event) {						
 						if (flag == false) {
 							document.getElementById("usetag").setAttribute("href", "#CD41");
 							document.getElementById("CD41").style.stroke = region_colors[1];
@@ -150,11 +177,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD41").style.stroke = region_colors[0];
-							document.getElementById("CD28").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//강원도
@@ -169,7 +193,7 @@ function getList(areaId){
 							document.getElementById("CD42").style.stroke = region_colors[2];
 							flag = true;
 						}
-						// document.getElementById("LCD42").style.stroke=region_colors[2];
+						 document.getElementById("CD42").style.stroke=region_colors[2];
 					}, false);
 
 	document
@@ -177,10 +201,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD42").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//충남
@@ -189,6 +211,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseover",
 					function(event) {
+						// 다른 지역 색상을 초기화
+						
 						if (flag == false) {
 							document.getElementById("usetag").setAttribute(
 									"href", "#CD44");
@@ -203,12 +227,9 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD44").style.stroke = region_colors[0];
-							document.getElementById("CD36").style.stroke = region_colors[0];
-							document.getElementById("CD30").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
+					
 					}, false);
 
 	//충북
@@ -228,10 +249,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD43").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//경북&대구&울산
@@ -253,12 +272,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD47").style.stroke = region_colors[0];
-							document.getElementById("CD27").style.stroke = region_colors[0];
-							document.getElementById("CD31").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//전북
@@ -278,10 +293,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD45").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//전남&광주
@@ -302,10 +315,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD46").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//경남&부산
@@ -327,11 +338,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD48").style.stroke = region_colors[0];
-							document.getElementById("CD26").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//제주
@@ -352,10 +360,8 @@ function getList(areaId){
 			.addEventListener(
 					"mouseout",
 					function(event) {
-						if (flag == true) {
-							document.getElementById("CD50").style.stroke = region_colors[0];
-							flag = false;
-						}
+						mapColorInit();
+						if (flag == true) flag=false;
 					}, false);
 
 	//지도 사이즈

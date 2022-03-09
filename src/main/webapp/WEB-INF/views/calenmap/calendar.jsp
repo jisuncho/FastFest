@@ -20,22 +20,23 @@
 <!-- map end -->
 
 
-<link href="<%=request.getContextPath()%>/resources/css/calendar.css"
-	rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/css/map.css"
-	rel="stylesheet" />
-
+<link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/map.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/board.css" rel="stylesheet" />
 
 
 <style>
 
-text {
+
+body{
 	font-family: 'Dongle' !important;
+	font-size:20pt;
 }
+/* 달력과 지도를 감싸고있는 구역 사이즈*/
 .container {
 	display: flex;
-	height:500px;
-	width:1100px;
+	height:600px;
+	width:1000px;
 }
 /* Tooltip container */
 .tooltip {
@@ -93,7 +94,7 @@ text {
 					</a>
 					
 				</div>
-<div font-size="15pt">●위에 마우스를 올려보세요 :)</div>
+				<div>●위에 마우스를 올려보세요 :)</div>
 				<!-- <div class="today_button_div"> -->
 				<!-- <input type="button" class="today_button" onclick="javascript:location.href='/calendar.do'" value="go today"/> -->
 				<!-- </div> -->
@@ -112,9 +113,13 @@ text {
 					</thead>
 					<tbody>
 						<tr>
+						<!-- 일요일이 today 일때 -->
 							<c:forEach var="dateList" items="${dateList}" varStatus="date_status">
 								<c:choose>
 									<c:when test="${dateList.value=='today'}">
+										<c:if test="${date_status.index%7==0}">
+											</tr>
+										</c:if>
 										<td class="today" style="width: 50px;">
 											<div class="date">${dateList.date}</div>
 											<div class="dots">${dateList.schedule_detail}</div>
@@ -127,9 +132,9 @@ text {
 										</td>
 									</c:when>
 									<c:when test="${date_status.index%7==0}">
-							</tr>
+									</tr>
 							
-							<tr>
+									<tr>
 							<td class="sun_day" style="width: 50px;" >
 								<div class="sun">${dateList.date}</div>
 								<div class="dots">${dateList.schedule_detail}</div>
@@ -162,5 +167,4 @@ text {
 
 
 </html>
-
 
