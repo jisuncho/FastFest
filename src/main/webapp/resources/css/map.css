@@ -115,3 +115,15 @@
 	stroke: #c4c4c4;
 	stroke-width: 5;
 }
+
+.card-title{
+	
+	font-family: 'Dongle', sans-serif !important; 
+	font-size :20pt;
+}
+
+.card-text{
+	
+	font-family: 'Dongle', sans-serif !important; 
+	font-size :20pt;
+}

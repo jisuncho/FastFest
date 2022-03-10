@@ -12,7 +12,8 @@
     .overlay_info a strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
     .overlay_info .desc {padding:14px;position: relative; min-width: 190px; height: 56px}
     .overlay_info img {vertical-align: top;}
-    .overlay_info .address {font-size: 12px; color: #333; position: absolute; left: 10px; right: 14px; top: 24px; white-space: normal}
+    .overlay_info .address {font-size: 14px; color: #333; position: absolute; left: 10px; right: 14px; top: 20px; white-space: normal}
+    .overlay_info .address2 {font-size: 12px; color: #333; position: absolute; left: 10px; right: 14px; top: 24px; white-space: normal}
     .overlay_info:after {content:'';position: absolute; margin-left: -11px; left: 50%; bottom: -12px; width: 22px; height: 12px; background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;}
 
  .button-1{
@@ -62,7 +63,7 @@
 <div id="map"  style="margin:auto; width:800px;height:600px;"></div>
 <div style="text-align:center;">
 
-  <div class="button-1">
+  <div class="button-1" style="margin-top:10px">
     <div class="eff-1"></div>
     <a href="javascript:window.history.back();"> 뒤로가기 </a>
   </div>
@@ -104,7 +105,8 @@ geocoder.addressSearch('<%=(String)request.getAttribute("addr")%>', function(res
         content += '    <a href="#" target="_blank"><strong>축제장소</strong></a>';
         content += '    <div class="desc">';
         //content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
-        content += '        <span class="address">'+'<%=(String)request.getAttribute("fes_name")%>'+'</span>';
+        content += '        <span class="address">'+'<%=(String)request.getAttribute("fes_name")%>'+'</span><br/>';
+		content += '<p class="address2" style="margin-top:15px"> 장소 : ' + '<%=(String)request.getAttribute("fes_place")%>' + '</p>';
         content += '    </div>';
         content += '</div>';
         

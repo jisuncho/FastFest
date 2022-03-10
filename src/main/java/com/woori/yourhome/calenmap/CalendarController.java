@@ -148,7 +148,7 @@ public class CalendarController {
 					festDetail += "<div class=\"tooltip\">\r\n"
 							+ "<div style=\"border-radius:75px; width:10px; height:10px; margin:2px; background-color:"
 							+ colorMap.get(fdto.getFES_AREA()) + "; display:inline-block\"></div>\r\n"
-							+ "<span class=\"tooltiptext\">" + fdto.getFES_NAME() + ':' + fdto.getFES_STARTDATE()+'~' + fdto.getFES_ENDDATE()
+							+ "<span class=\"tooltiptext\">" + fdto.getFES_NAME() +"<br/>" + fdto.getFES_STARTDATE()+'~' + fdto.getFES_ENDDATE()
 							+ " </span>\r\n" + "</div>";
 					dateDto.setSchedule_detail(festDetail);
 				}
@@ -189,11 +189,11 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("/calendar/kakaomap")
-	public String kakaomap(String addr, String fes_name, Model model) {
+	public String kakaomap(String addr, String fes_name,String fes_place, Model model) {
 		
 		model.addAttribute("addr", addr);
 		model.addAttribute("fes_name", fes_name);
-		
+		model.addAttribute("fes_place", fes_place);
 		
 		return "calenmap/kakaomap";
 	}

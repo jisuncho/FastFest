@@ -2,8 +2,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.*"%>
 <%@page import="com.woori.yourhome.calenmap.*" %>
-<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ page language="java" pageEncoding="UTF-8"%>
 
 <html lang="ko">
 <head>
@@ -24,61 +25,19 @@
 <link href="<%=request.getContextPath()%>/resources/css/map.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/board.css" rel="stylesheet" />
 
-
-<style>
-
-
-body{
-	font-family: 'Dongle' !important;
-	font-size:20pt;
-}
-/* 달력과 지도를 감싸고있는 구역 사이즈*/
-.container {
-	display: flex;
-	height:600px;
-	width:1000px;
-}
-/* Tooltip container */
-.tooltip {
-  position: relative;
-  display: inline-block;
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 350px;
-  background-color: #fd6aa5;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -60px;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-}
-</style>
 </head>
 <body>
 
+<!-- nav 추가하는 곳  -->
 
-
+<%@include file="../include/nav.jsp" %>
 	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
 		<input type="hidden" name="year" value="${today_info.search_year}"/>
 		<input type="hidden" name="month" value="${today_info.search_month}"/>
 		<input type="hidden" name="areaId" value=""/>
 		
  		<div class="container">
-			<div class="calendar" style="margin-right:80px;margin-left:100px"; display:block">
+			<div class="calendar" style="margin-right:80px;margin-left:80px;display:block; ">
 
 				<!--날짜 네비게이션  -->
 				<div class="navigation">
@@ -94,11 +53,11 @@ body{
 					</a>
 					
 				</div>
-				<div>●위에 마우스를 올려보세요 :)</div>
+				<div style="font-size:18pt;">●위에 마우스를 올려보세요 :)</div>
 				<!-- <div class="today_button_div"> -->
 				<!-- <input type="button" class="today_button" onclick="javascript:location.href='/calendar.do'" value="go today"/> -->
 				<!-- </div> -->
-				<table class="calendar_body">
+				<table class="calendar_body" style="margin-top:5px; margin-bottom:10px;">
 
 					<thead>
 						<tr bgcolor="#ffffff">
