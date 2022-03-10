@@ -91,29 +91,21 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
     <body>
         <div id="main_menu" style="display:flex;">
             <div class="logo_area" style="display:flex;">
-                <a href=""><img src="<%=request.getContextPath()%>/resources/images/logo3.png" alt="" style="height:230px; margin-top:-20px; margin-left:20px; display:flex;"></a>
+                <a href="http://localhost:8080/FastFest/"><img src="<%=request.getContextPath()%>/resources/images/logo3.png" alt="" style="height:230px; margin-top:-20px; margin-left:20px; display:flex;"></a>
             </div>
            <div class="inner_main_menu">
                 <ul id="menu">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Detail</a>
-                        <ul style = "background: #cfffe5">
-                            <li><a href="">Dropdown Menu</a></li>
-                            <li><a href="">Dropdown Menu</a>
-                                <ul >
-                                    <li><a href="">Dropdown Sub Menu</a></li>
-                                    <li><a href="">Dropdown Sub Menu</a></li>
-                                    <li><a href="">Dropdown Sub Menu</a></li>
-                                    <li><a href="">Dropdown Sub Menu</a></li>
-                                    <li><a href="">Dropdown Sub Menu</a></li>
-                                </ul>
-                            </li>
+                    <li><a href="http://localhost:8080/FastFest/">Home</a></li>
+                    <li><a href="">공지사항</a></li>
+                    <li><a href="">게시판</a>
+                        <ul style = "background: #0067a3">
+                            <li><a href="">자유게시판</a></li>
+                            <li><a href="">갤러리</a></li>
                             <li><a href="">Dropdown Menu</a></li>
                             <li><a href="">Dropdown Menu</a></li>
                         </ul>
                     </li>
-                    <li><a href="">Contact</a></li>
+                    <li><a href="">이달의 축제</a></li>
                     
                     
                     <%if(userid.equals("")) {%>
