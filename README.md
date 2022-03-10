@@ -113,6 +113,7 @@
 ## 220302
 
 * 지도 크기 고정
+  * (calendar.css)
 
 ```javascript
 .container {
@@ -184,7 +185,7 @@
   }
   ```
   
-  - (calendar.jsp) : 툴팁 기본코드
+  - (calendar.css) : 툴팁 기본코드
 
    ```java script
    /* Tooltip container */
@@ -361,7 +362,7 @@ $('#group1').attr("transform", "scale(0.6,0.6)");    //글자크기
 ```
 
 - GIT에 README.md 파일 잔디가 안심어지는 현상!! - (루트를 제대로 못찾았었음) 
-- merge를 해줘야 잔디가 심어짐!!!
+  - merge를 해줘야 잔디가 심어짐!!!
 - 향후과제
 
   - ~~오늘날짜가 일요일이면 달력 데이터 잘리는 현상~~
@@ -373,7 +374,7 @@ $('#group1').attr("transform", "scale(0.6,0.6)");    //글자크기
 ## 220309
 
 - 달력과 지도를 감싸고 있는 container의 width를 줄여 둘의 간격을 적절하게 맞춤
-  - (calendar.jsp) 
+  - (calendar.css) 
 
 ```javascript
 .container {
@@ -525,9 +526,176 @@ body{
 
 - 카카오맵API 사용하기
 
-  - 지도를 볼수있는 링크넣기 (이미지로)
-- (board.css)
-  
+- " https://developers.kakao.com/ " 가입하고 , 애플리케이션 만들어서 키값 받기
+
+  - 플랫폼> 플랫폼 설정하기 > web플랫폼 등록> 도메인 or http://http://localhost:8080/로 설정
+
+  - kakaomap.jsp파일 생성
+
+    - (board.jsp)
+
+      ```
+       function mapview(addr){
+      	 frm = document.myform;
+      	 	frm.addr.value=addr;///////////
+      	 	frm.method="get";
+      	 	frm.action="${pageContext.request.contextPath}/calendar/kakaomap";
+      	 	frm.submit();
+       }
+      ```
+
+    - (calendarController.java)
+
+      ```javascript
+      	@RequestMapping("/calendar/kakaomap")
+      	public String kakaomap(String addr, String fes_name, Model model) {
+      		
+      		model.addAttribute("addr", addr);
+      		model.addAttribute("fes_name", fes_name);
+      		
+      		
+      		return "calenmap/kakaomap";
+      	}
+      ```
+
+    - (kakaomap.jsp)
+
+      ```javascript
+      <%@ page language="java" contentType="text/html; charset=UTF-8"
+          pageEncoding="UTF-8"%>
+      <!DOCTYPE html>
+      <html>
+      <head>
+          <meta charset="utf-8">
+          <title>주소로 장소 표시하기</title>
+          <style>
+          .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
+          .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
+          .overlay_info a {display: block; background: #d95050; background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center; text-decoration: none; color: #fff; padding:12px 36px 12px 14px; font-size: 14px; border-radius: 6px 6px 0 0}
+          .overlay_info a strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
+          .overlay_info .desc {padding:14px;position: relative; min-width: 190px; height: 56px}
+          .overlay_info img {vertical-align: top;}
+          .overlay_info .address {font-size: 12px; color: #333; position: absolute; left: 10px; right: 14px; top: 24px; white-space: normal}
+          .overlay_info:after {content:'';position: absolute; margin-left: -11px; left: 50%; bottom: -12px; width: 22px; height: 12px; background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png) no-repeat 0 bottom;}
+      
+       .button-1{
+        width:140px;
+        height:50px;
+        border:2px solid #34495e;
+        text-align:center;
+        cursor:pointer;
+        position:relative;
+        box-sizing:border-box;
+        overflow:hidden;
+        display:inline-block;
+      }
+      .button-1 a{
+        font-family:arial;
+        font-size:16px;
+        color:#34495e;
+        text-decoration:none;
+        line-height:50px;
+        transition:all .5s ease;
+        z-index:2;
+        position:relative;
+      }
+      .eff-1{
+        width:140px;
+        height:50px;
+        top:-2px;
+        right:-140px;
+        background:#34495e;
+        position:absolute;
+        transition:all .5s ease;
+        z-index:1;
+        display:inline-block;
+      }
+      .button-1:hover .eff-1{
+        right:0;
+      }
+      .button-1:hover a{
+        color:#fff;
+      }
+      
+      </style>
+      </head>
+      <body>
+      <p style="margin-top:10px">
+      </p>
+      <div id="map"  style="margin:auto; width:800px;height:600px;"></div>
+      <div style="text-align:center;">
+      
+        <div class="button-1" style="margin-top:10px">
+          <div class="eff-1"></div>
+          <a href="javascript:window.history.back();"> 뒤로가기 </a>
+        </div>
+          
+      </div>
+      
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef2aa6df6213973c542524a9ec7ed2b6&libraries=services"></script>
+      <script>
+      
+      
+      
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+          mapOption = {
+              center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };  
+      
+      // 지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
+      
+      // 주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+      
+      // 주소로 좌표를 검색합니다
+      geocoder.addressSearch('<%=(String)request.getAttribute("addr")%>', function(result, status) {
+      
+          // 정상적으로 검색이 완료됐으면 
+           if (status === kakao.maps.services.Status.OK) {
+      
+              var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+              // 결과값으로 받은 위치를 마커로 표시합니다
+              // var marker = new kakao.maps.Marker({
+              //   map: map,
+              //   position: coords
+              // });
+      
+              var content = '<div class="overlay_info">';
+              content += '    <a href="#" target="_blank"><strong>축제장소</strong></a>';
+              content += '    <div class="desc">';
+              //content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
+              content += '        <span class="address">'+'<%=(String)request.getAttribute("fes_name")%>'+'</span><br/>';
+      
+              content += '    </div>';
+              content += '</div>';
+              
+              var mapCustomOverlay = new kakao.maps.CustomOverlay({
+                  position: coords,
+                  content: content,
+                  xAnchor: 0.5, // 커스텀 오버레이의 x축 위치입니다. 1에 가까울수록 왼쪽에 위치합니다. 기본값은 0.5 입니다
+                  yAnchor: 1.1 // 커스텀 오버레이의 y축 위치입니다. 1에 가까울수록 위쪽에 위치합니다. 기본값은 0.5 입니다
+              });
+      
+              mapCustomOverlay.setMap(map);
+              // infowindow.open(map, marker);
+      
+              // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+              map.setCenter(coords);
+          } 
+      });    
+      </script>
+      </body>
+      </html>
+      ```
+
+      
+
+- 지도를 볼수있는 링크넣기 (이미지로)
+
+  - (board.css)
 ```css
   .btn2 {
       border: 0;
@@ -538,24 +706,19 @@ body{
       right: 0px;
       letter-spacing: 1px;
   }
+------------------------------------------------------------------------
+data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
 ```
 
   - (map.jsp)
   
     ```javascript
- const mapimage_url = "'/yourhome/resources/images/별.png'";
-    -------------------------------------------------------------
-    data += '<button class="btn2" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
+ const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+"'"; 
+    const mapimage_url = "'/yourhome/resources/images/별.png'";
+  -------------------------------------------------------------
+      data += '<button class="btn2" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
     ```
     
-    
-    
-  - " https://developers.kakao.com/ " 가입하고 , 애플리케이션 만들어서 키값 받기
-  
-  - 플랫폼> 플랫폼 설정하기 > web플랫폼 등록> 도메인 or http://http://localhost:8080/로 설정
-  
-  - kakaomap.jsp파일 생성
-  
   - board.jsp - mapview()함수 생성
   
     ```javascript
@@ -572,11 +735,64 @@ body{
 
   - 향후과제
 
-      - 축제 리스트에서 지도 보기 이미지 마우스 아이콘 바꾸기
-      - 카드 사이즈 조금 늘이기
-          - margin-left :10px;
+      - ~~축제 리스트에서 지도보기 이미지위로 올렸을때 마우스 커서모양 바꾸기~~
+      - ~~(map.jsp) - zoom-in커서로 바꾸기~~
+      - 지도보기에서 축제장소도 올리기
+      - ~~뒤로가기버튼 마진주기~~
+      - (kakaomap.jsp)
+      - ~~카드 사이즈 조금 늘이기~~
+          - ~~margin-left :10px;~~
 
-  
+    ## 220310
+
+- 축제 리스트에서 지도보기 이미지위로 올렸을때 마우스 커서모양 바꾸기
+
+  - (map.jsp) - zoom-in커서로 바꾸기
+
+    ```javascript
+    data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
+    ```
+
+  - 뒤로가기버튼 마진주기
+
+      - (kakaomap.jsp)
+
+        ```javascript
+          <div class="button-1" style="margin-top:10px">
+            <div class="eff-1"></div>
+            <a href="javascript:window.history.back();"> 뒤로가기 </a>
+          </div>
+        ```
+
+- 카드 사이즈 조금 늘이기(높이)
+
+  - (map.jsp)
+
+    ```javascript
+    data += "<div class='course' style='width:900px ; height:170px;'>";
+    ```
+
+- 달력 툴팁색상변경 (calendar.jsp - tooltip)
+
+- 툴팁에서 BR태그로 날짜 아랫줄로 내리기(calendarcontroller.java)
+
+- 지도보기에서 축제장소 넣기
+
+  ```javascript
+  (calendarcontroll.java)
+  model.addAttribute("fes_place", fes_place);
+  (map.jsp)
+  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+ "&fes_place="+ item.fes_PLACE+ "'";
+  (kakaomap.jsp)
+  content += '<p class="address2" style="margin-top:15px"> 장소 : ' + '<%=(String)request.getAttribute("fes_place")%>' + '</p>';
+  ```
+
+- nav바 추가하기 
+
+  - nav.css 파일 추가 (by원웅)
+  - css충돌로 전면 수정 ( 글씨체, 달력크기 및 위치, 지도 위치, 카드 수정)
+
+
 
   
 
