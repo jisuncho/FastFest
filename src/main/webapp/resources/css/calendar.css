@@ -1,0 +1,234 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
+
+body {
+	scrollbar-face-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-3dlight-color: #ff0080;
+	scrollbar-shadow-color: #f6f6f6;
+	scrollbar-darkshadow-color: #f6f6f6;
+	scrollbar-track-color: #FFFFFF;
+	scrollbar-arrow-color: #f6f6f6;
+	margin-left: "0px";
+	margin-right: "0px";
+	margin-top: "0px";
+	margin-bottom: "0px";
+	
+}
+
+
+/* 달력과 지도를 감싸고있는 구역 사이즈*/
+.container {
+	display: flex;
+	height:460px;
+	width:1170px;
+	font-family: 'Dongle' !important;
+	font-size:20pt;
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 350px;
+  background-color: #e767ae;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+<!-- day날짜-->
+td {
+	
+	font-color: #4c4c4c;
+	border: 1px ;
+	solid: #b4b5b5;
+	
+}
+
+th {
+	
+	font-color: #4c4c4c;
+	border: 1px ;
+	solid: #b4b5b5;
+}
+
+.dots{
+	display:inline;
+	
+}
+
+select {
+	
+	color: #ffffff;
+}
+
+.divDotText {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+A:link {
+	font-size:25pt;
+	
+	color: #000000;
+	text-decoration: none;
+}
+
+A:visited {
+	font-size: 20pt;
+	
+	color: #000000;
+	text-decoration: none;
+}
+
+A:active {
+	font-size: 25pt;
+	color: #fb5d94;
+	text-decoration: none;
+}
+
+A:hover {
+	font-size: 25pt;
+	color: #fb5d94;
+	text-decoration: none;
+}
+<!-- 월~일요일 -->
+.day {
+	height:40px;
+	font-size:25pt;
+	font-weight: bold;
+	text-align: center;
+	color : #4c4c4c;
+}
+
+.sat {
+	color: #4abdc8;
+}
+
+.sun {
+	color: #f96c9d;
+}
+
+.today_button_div {
+	float: right;
+}
+
+.today_button {
+	width: 100px;
+	height: 30px;
+}
+
+.calendar {
+	width: 600px;
+	height: 700px;
+	margin-right: 50px;
+}
+
+.navigation {
+	margin-top: 100px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 25pt;
+	vertical-align: middle;
+}
+
+.calendar_body {
+	width: 600px;
+	background-color: #FFFFFF;
+	border: 1px solid #c0c0c0;
+	border-collapse: collapse;
+
+}
+
+.calendar_body .today {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #bfe3ea;
+	text-align: left;
+	vertical-align: top;
+
+}
+
+.calendar_body .date {
+	font-weight: bold;
+	padding-left: 3px;
+	padding-top: 3px;
+	
+}
+
+.calendar_body .sat_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	text-align: left;
+	vertical-align: top;
+}
+
+.calendar_body .sat_day .sat {
+	color: #4abdc8;
+	font-weight: bold;
+
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.calendar_body .sun_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	text-align: left;
+	vertical-align: top;
+}
+
+.calendar_body .sun_day .sun {
+	color: #f96c9d;
+	font-weight: bold;
+
+	padding-left: 3px;
+	padding-top: 3px;
+}
+
+.calendar_body .normal_day {
+	border: 1px solid #c0c0c0;
+	height: 100px;
+	background-color: #ffffff;
+	vertical-align: top;
+	text-align: left;
+
+	
+}
+
+.before_after_month {
+	margin: 10px;
+	font-weight: bold;
+
+}
+
+.before_after_year {
+	font-weight: bold;
+
+}
+
+.this_month {
+	margin: 10px;
+
+}
