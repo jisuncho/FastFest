@@ -5,6 +5,9 @@
 <%
 request.setAttribute("commonURL", request.getContextPath());
 
+// request 객체에 저장된 데이터를 ${변수명} 이렇게 가져다 쓸수있어요
+// 
+
 String userid= StringUtil.nullToValue(session.getAttribute("userid"), "");
 String username= StringUtil.nullToValue(session.getAttribute("username"), "");
 String email= StringUtil.nullToValue(session.getAttribute("email"), "");
@@ -20,6 +23,9 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
            </li>
           <li class="nav-item">
              <a class="nav-link" href="${commonURL}/gallery/list">갤러리</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link active" href="${commonURL}/freeboard/list">답글게시판</a>
            </li>
          
            <%if(userid.equals("")) {%>

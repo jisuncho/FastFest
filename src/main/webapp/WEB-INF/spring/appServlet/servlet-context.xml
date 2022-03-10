@@ -29,13 +29,14 @@
       <beans:property name="maxUploadSize" value="20971520"></beans:property>
       <beans:property name="maxInMemorySize" value="10485760"></beans:property>
    </beans:bean>
-   
+   <!-- 
    <interceptors>
    		<interceptor>
    			<mapping path="/**/w*"></mapping>
    			<mapping path="/**/m*"></mapping>
+   			
    			<beans:bean id="loginInterceptor" class="com.woori.yourhome.common.LoginInterceptor"/>
    		</interceptor>
-   </interceptors>
+   </interceptors> -->
 	
 </beans:beans>

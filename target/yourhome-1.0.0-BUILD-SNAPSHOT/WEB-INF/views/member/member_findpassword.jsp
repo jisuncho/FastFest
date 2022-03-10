@@ -18,7 +18,7 @@
    <input type="hidden" name="idcheck" id="idcheck" value="N"/>
    
 <div class="container" style="margin-top:80px; width:60%">
-  <h1>아이디찾기</h1>
+  <h1>비밀번호찾기</h1>
 
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="아이디" name="userid" id="userid">
@@ -83,8 +83,8 @@ function goFindId()
 
 function goCancel()
 {
-  var frm = document.form;
-   frm.action="/board/list";
+  var frm = document.myform;
+   frm.action="${commonURL}/board/list";
    frm.submit();
 }
 </script>

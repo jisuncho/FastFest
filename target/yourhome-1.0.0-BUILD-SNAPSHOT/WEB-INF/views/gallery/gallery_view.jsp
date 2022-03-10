@@ -12,6 +12,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -96,12 +97,25 @@ function goModify()
 
 function goDelete()
 {
-	if( confirm("삭제하시겠습니까?"))
-	{
-		var frm = document.myform;
-		frm.action="<%=request.getContextPath()%>/gallery/delete";
-		frm.submit();
-	}
+	   
+	   if( !confirm("삭제하시겠습니까?"))
+		   return false;
+	   
+	   var frmData = new FormData(document.myform);
+	    //console.log( frmData );
+	   $.ajax({
+	      url:"${commonURL}/gallery/delete",
+	      data:frmData,
+	      contentType:false,
+	      processData:false,
+	      type:"POST",
+	   })
+	   .done( (result)=>{
+		   location.href="${commonURL}/gallery/list";
+	   })
+	   .fail( (error)=>{
+	      console.log(error);
+	   })
 }
 
 </script>
