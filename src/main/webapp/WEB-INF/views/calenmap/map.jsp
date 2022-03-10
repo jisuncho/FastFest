@@ -6,9 +6,11 @@
 		font-family: 'Dongle', sans-serif;
 	}
 	
-
+	span{
+		font-family: 'Dongle', sans-serif;
+	}
 </style>
-<div class="map" style="margin:auto">
+<div class="map" style="margin-top:155px">
 
 	<svg style='background:#ffffff; overflow:visible' xmlns="http://www.w3.org/2000/svg"> 
 	<defs> 
@@ -125,17 +127,17 @@ function getList(areaId){
       result.forEach( (item) => {
     	  const image_url = "'/yourhome/resources/images/" + item.fes_IMG+"'";
     	  const mapimage_url = "'/yourhome/resources/images/별.png'";
-    	  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+"'";
+    	  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+ "&fes_place="+ item.fes_PLACE+ "'";
     	  
     	  console.log(map_url);
     	  var data = "<div onclick=mapview('"+item.fes_ADDRESS+"') id='cards' class='courses-container' style= 'margin-left: 150px; margin-bottom:80px; width:1000px; height:100px'>";
-      		data += "<div class='course' style='width:900px ; height:150px;'>";
+      		data += "<div class='course' style='width:900px ; height:170px;'>";
       		data += '<div style="width:600px; z-index:100; background-size: cover; background-image:url('+image_url+');" class="course-preview"></div>';
       		data += "<div class='course-info' style='margin-left:5px; margin-bottom:5px'>";
-      		data += "<h5 class='card-title' style='padding:-100px; margin-top:5px; margin-bottom:5px'>이달의 "+item.fes_AREA+" 행사</h5>";
-      		data += "<p class='card-text' style='margin-top:5px; margin-bottom:5px'>"+item.fes_NAME+"<br/>" + item.fes_STARTDATE+" ~ "+item.fes_ENDDATE+"<br/>장소 : " +item.fes_PLACE+"</p>";
-      		data += '<button class="btn2" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
-      		data += "<button class='btn' style='width:100px; padding:2px;'><a href='"+item.fes_DOMAIN+"'><span style='font-size:18pt'>홈페이지</span></a></button>";
+      		data += "<h5 class='card-title' style='padding:-100px; margin-left:15px; margin-top:25px; margin-bottom:25px'>이달의 "+item.fes_AREA+" 행사</h5>";
+      		data += "<p class='card-text' style='margin-top:5px; margin-left:15px; margin-bottom:5px'>"+item.fes_NAME+"<br/>" + item.fes_STARTDATE+" ~ "+item.fes_ENDDATE+"<br/>장소 : " +item.fes_PLACE+"</p>";
+      		data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
+      		data += "<button class='btn' style='width:100px; padding:2px; '><a href='"+item.fes_DOMAIN+"'><span style='font-size:18pt'>홈페이지</span></a></button>";
       		data += " </div> </div> </div>";
       		
       		document.getElementById("imagediv").style.display = "none";
