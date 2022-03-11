@@ -18,7 +18,7 @@
 
     .courses-container {}
     
-    img {
+    .img1 {
     	width:30%;
     	height:20%;
     	margin-top:30px;
@@ -129,6 +129,8 @@
 	
 	.image2 {
 		padding:3px;
+		width:30%;
+		height:20%;
 	}
     /* SOCIAL PANEL CSS */
     .social-panel-container {
