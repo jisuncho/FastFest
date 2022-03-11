@@ -130,6 +130,7 @@ function getList(areaId){
     	  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+ "&fes_place="+ item.fes_PLACE+ "'";
     	  
     	  console.log(map_url);
+ 
     	  var data = "<div onclick=mapview('"+item.fes_ADDRESS+"') id='cards' class='courses-container' style= 'margin-left: 150px; margin-bottom:80px; width:1000px; height:100px'>";
       		data += "<div class='course' style='width:900px ; height:170px;'>";
       		data += '<div style="width:600px; z-index:100; background-size: cover; background-image:url('+image_url+');" class="course-preview"></div>';
@@ -153,8 +154,6 @@ function getList(areaId){
     .fail( (error)=>{
        console.log(error);
     });
-     
-     
      
 }
 	var region_colors = [ "#c4c4c4", "#ff7c35", "#29d352", "#ff6575",
