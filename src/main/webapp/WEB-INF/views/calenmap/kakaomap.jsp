@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <title>주소로 장소 표시하기</title>
     <style>
     .overlay_info {border-radius: 6px; margin-bottom: 12px; float:left;position: relative; border: 1px solid #ccc; border-bottom: 2px solid #ddd;background-color:#fff;}
     .overlay_info:nth-of-type(n) {border:0; box-shadow: 0px 1px 2px #888;}
-    .overlay_info a {display: block; background: #d95050; background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center; text-decoration: none; color: #fff; padding:12px 36px 12px 14px; font-size: 14px; border-radius: 6px 6px 0 0}
-    .overlay_info a strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
+    .overlay_info .fes-title {display: block; background: #d95050; background: #d95050 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center; text-decoration: none; color: #fff; padding:12px 36px 12px 14px; font-size: 14px; border-radius: 6px 6px 0 0}
+    .overlay_info .fes-title strong {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_icon.png) no-repeat; padding-left: 27px;}
     .overlay_info .desc {padding:14px;position: relative; min-width: 190px; height: 56px}
     .overlay_info img {vertical-align: top;}
     .overlay_info .address {font-size: 14px; color: #333; position: absolute; left: 10px; right: 14px; top: 20px; white-space: normal}
@@ -58,14 +59,16 @@
 </style>
 </head>
 <body>
+
+<%@include file="../include/nav.jsp" %>
 <p style="margin-top:10px">
 </p>
-<div id="map"  style="margin:auto; width:800px;height:600px;"></div>
+<div id="map"  style="margin:auto; margin-top:70px; width:900px;height:650px;"></div>
 <div style="text-align:center;">
 
-  <div class="button-1" style="margin-top:10px">
+  <div class="button-1" style="margin-top:10px" onclick="window.history.back(document.referrer);">
     <div class="eff-1"></div>
-    <a href="javascript:window.history.back();"> 뒤로가기 </a>
+    <a href="#"> 뒤로가기 </a>
   </div>
     
 </div>
@@ -102,11 +105,11 @@ geocoder.addressSearch('<%=(String)request.getAttribute("addr")%>', function(res
         // });
 
         var content = '<div class="overlay_info">';
-        content += '    <a href="#" target="_blank"><strong>축제장소</strong></a>';
+        content += '    <div class="fes-title"><strong>축제장소</strong></div>';
         content += '    <div class="desc">';
         //content += '        <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/place_thumb.png" alt="">';
         content += '        <span class="address">'+'<%=(String)request.getAttribute("fes_name")%>'+'</span><br/>';
-		content += '<p class="address2" style="margin-top:15px"> 장소 : ' + '<%=(String)request.getAttribute("fes_place")%>' + '</p>';
+		content += '		<p class="address2" style="margin-top:15px"> 장소 : ' + '<%=(String)request.getAttribute("fes_place")%>' + '</p>';
         content += '    </div>';
         content += '</div>';
         
@@ -124,6 +127,9 @@ geocoder.addressSearch('<%=(String)request.getAttribute("addr")%>', function(res
         map.setCenter(coords);
     } 
 });    
+
+
+
 </script>
 </body>
 </html>
