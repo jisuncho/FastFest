@@ -715,10 +715,11 @@ data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+ma
     ```javascript
  const map_url = "'/yourhome/calendar/kakaomap?addr="+item.fes_ADDRESS+"&fes_name="+ item.fes_NAME+"'"; 
     const mapimage_url = "'/yourhome/resources/images/별.png'";
-  -------------------------------------------------------------
+    ```
+-------------------------------------------------------------
       data += '<button class="btn2" onclick="location.href='+map_url+'" type="button"><img src='+mapimage_url+' class="image2"></button>'
     ```
-    
+
   - board.jsp - mapview()함수 생성
   
     ```javascript
@@ -737,7 +738,7 @@ data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+ma
 
       - ~~축제 리스트에서 지도보기 이미지위로 올렸을때 마우스 커서모양 바꾸기~~
       - ~~(map.jsp) - zoom-in커서로 바꾸기~~
-      - 지도보기에서 축제장소도 올리기
+      - ~~지도보기에서 축제장소도 올리~~기
       - ~~뒤로가기버튼 마진주기~~
       - (kakaomap.jsp)
       - ~~카드 사이즈 조금 늘이기~~
@@ -790,9 +791,52 @@ data += '<button class="btn2" style="cursor:zoom-in" onclick="location.href='+ma
 - nav바 추가하기 
 
   - nav.css 파일 추가 (by원웅)
-  - css충돌로 전면 수정 ( 글씨체, 달력크기 및 위치, 지도 위치, 카드 수정)
+  - ★css충돌로 전면 수정★ ( 글씨체, 달력크기 및 위치, 지도 위치, 카드(하단의 축제리스트) 수정)
 
 
+
+  ## 220311
+
+- kakao맵 크기 수정 (kakaomap.jsp - div id="map"에서 크기수정)
+
+- kakaomap 페이지에 nav바 추가하기  (배너클릭시 홈페이지로 넘어가는 ahref태그는 원래대로 비워둠)
+
+- 축제장소를 클릭하는만큼 뒤로가기 버튼을 눌러야 뒤로가지는 현상
+
+  - (kakaomap.jsp)
+
+  ```javascript
+   // 이전 페이지... 즉 한단계 뒤로 돌아가기
+   histroy.go(-1);
+   // 두단계 이전의 페이지로 이동
+   histroy.go(-2);
+   // 세단계 이전의 페이지로 이동
+   histroy.go(-3);
+   // history.go(-1)과 동일한 기능을 구현하나 go(-1)이 보편적으로 사용됨
+   history.back();
+   // history.go(1)과 동일하며 앞으로 이동
+   history.forward();
+   // document.referrer : 방문했던 마지막 페이지의 url 정보
+  
+  -------------------------------------------------------------------------------
+    <div class="button-1" style="margin-top:10px" onclick="window.history.back(document.referrer);">
+      <div class="eff-1"></div>
+      <a href="#"> 뒤로가기 </a>
+    </div>
+  
+  ```
+
+- cardtext 줄간격
+
+  (map.css)
+
+  ```javascript
+  .card-text{
+  	font-family: 'Dongle', sans-serif !important; 
+  	font-size :20pt;
+  	line-height: 1;  // 숫자만큼 줄간격 (숫자나,% , px로 줄수 있다 )
+  }
+  ```
 
   
 
