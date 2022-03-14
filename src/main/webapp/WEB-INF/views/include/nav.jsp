@@ -134,7 +134,7 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
             </div>
         </div>
         
-        
+     <!-- 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="jquery.slicknav.min.js"></script>
     <script type="text/javascript">
@@ -142,5 +142,6 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
             $('#menu').slicknav();
         });
     </script>
+     -->  
     </body>
 </html>
