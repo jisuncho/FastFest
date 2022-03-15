@@ -105,6 +105,7 @@ public class MemberController {
 			if(resultDto.getUser_password().equals(dto.getUser_password()))
 			{
 				map.put("flag", "1"); //로그온 성공시 세션에 정보를 저장한다 
+				session.setAttribute("id", resultDto.getUser_key());
 				session.setAttribute("userid", resultDto.getUser_id());
 				session.setAttribute("username", resultDto.getUser_name());
 				session.setAttribute("usermail", resultDto.getUser_mail());

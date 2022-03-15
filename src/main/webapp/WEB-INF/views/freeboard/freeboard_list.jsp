@@ -31,7 +31,7 @@
 	<input type="hidden" name="pg"  id="pg" value="<%=pg%>"/>
 	<input type="hidden" name="seq" id="seq" value=""/>
 
-    <div class="container" style="margin-top:80px">
+    <div class="container" style="margin-top:100px;">
         <h2>게시판 목록 (${totalCnt}건)</h2>
 
         <div class="input-group mb-3" style="margin-top:20px;">
@@ -63,6 +63,7 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>작성일</th>
+                <th>추천수</th>
               </tr>
             </thead>
             <tbody>
@@ -82,6 +83,7 @@
                 <td><%=reply%><a href="#none" onclick="goView('<%=tempDto.getSeq()%>')" ><%=tempDto.getTitle()%></a></td>
                 <td><%=tempDto.getUserid()%></td>
                 <td><%=tempDto.getRegdate()%></td>
+                <td><%=tempDto.getLikehit()%></td>
               </tr>
             <%}%>
             </tbody>
@@ -93,7 +95,7 @@
        	  </div>
        	  
           <div class="container mt-3" style="text-align:right;">
-            <a href="<%=request.getContextPath()%>/board/write" 
+            <a href="<%=request.getContextPath()%>/freeboard/write" 
                class="btn btn-secondary">글쓰기</a>
           </div>
           

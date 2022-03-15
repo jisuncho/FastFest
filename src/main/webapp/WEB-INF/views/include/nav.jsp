@@ -7,7 +7,7 @@ request.setAttribute("commonURL", request.getContextPath());
 
 // request 객체에 저장된 데이터를 ${변수명} 이렇게 가져다 쓸수있어요
 // 
-
+String id= StringUtil.nullToValue(session.getAttribute("id"), "");
 String userid= StringUtil.nullToValue(session.getAttribute("userid"), "");
 String username= StringUtil.nullToValue(session.getAttribute("username"), "");
 String email= StringUtil.nullToValue(session.getAttribute("email"), "");
@@ -91,7 +91,7 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
     <body>
         <div id="main_menu" style="display:flex;">
             <div class="logo_area" style="display:flex;">
-                <a href="http://localhost:8080/FastFest/"><img src="<%=request.getContextPath()%>/resources/images/logo3.png" alt="" style="height:230px; margin-top:-20px; margin-left:20px; display:flex;"></a>
+                <a href="http://localhost:8080/FastFest/" style="height:150px;"><img src="<%=request.getContextPath()%>/resources/images/logo3.png" alt="" style="height:230px; margin-top:-20px; margin-left:20px; display:flex;"></a>
             </div>
            <div class="inner_main_menu">
                 <ul id="menu">
@@ -99,9 +99,9 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
                     <li><a href="">공지사항</a></li>
                     <li><a href="">게시판</a>
                         <ul style = "background: #0067a3">
-                            <li><a href="">자유게시판</a></li>
-                            <li><a href="">갤러리</a></li>
-                            <li><a href="">Dropdown Menu</a></li>
+                            <li><a href="http://localhost:8080/FastFest/freeboard/list">자유게시판</a></li>
+                            <li><a href="http://localhost:8080/FastFest/gallery/list">갤러리</a></li>
+                            <li><a href="http://localhost:8080/FastFest/like/list">즐겨찾기</a></li>
                             <li><a href="">Dropdown Menu</a></li>
                         </ul>
                     </li>

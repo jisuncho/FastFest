@@ -39,7 +39,8 @@
 	
 	<select id="Member_getInfo" parameterType="MemberDto" resultType="MemberDto">
 		select 	 
-			user_id
+			user_key
+			,user_id
 			,user_password
 			,user_name
 			,user_mail

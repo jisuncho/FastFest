@@ -17,16 +17,17 @@
     <%@include file="../include/nav.jsp" %>
    <%
    FreeBoardDto dto = (FreeBoardDto)request.getAttribute("boardDto");
+   String mode = (String)request.getAttribute("mode");
    %>
 
    <form  name="myform"  method="post"    >
-      <input type="text" name="seq"      id="seq"      value="<%=dto.getSeq()%>" />
-      <input type="text" name="group_id" id="group_id" value="<%=dto.getGroup_id()%>" />
-      <input type="text" name="g_level"  id="g_level"  value="<%=dto.getG_level()%>" />
-      <input type="text" name="depth"    id="depth"    value="<%=dto.getDepth()%>" />
-      <input type="text" name="mode"     id="mode"     value="insert" />
+      <input type="hidden" name="seq"      id="seq"      value="<%=dto.getSeq()%>" />
+      <input type="hidden" name="group_id" id="group_id" value="<%=dto.getGroup_id()%>" />
+      <input type="hidden" name="g_level"  id="g_level"  value="<%=dto.getG_level()%>" />
+      <input type="hidden" name="depth"    id="depth"    value="<%=dto.getDepth()%>" />
+      <input type="hidden" name="mode"     id="mode"     value="insert" />
       
-    <div class="container" style="margin-top:80px">
+    <div class="container" style="margin-top:100px;">
         <h2>게시판 쓰기</h2>
 
         <table class="table table-hover " style="margin-top: 30px;">
@@ -49,9 +50,8 @@
                 <td>작성자</td>
                 <td>
                     <div class="mb-3" style="margin-top:13px;">
-                        <input type="text" class="form-control" id="userid" name="userid"  value="conan">
-                        <input type="text" class="form-control" id="username" name="username" 
-                        placeholder="이름을 입력하세요" value="<%=username%>">
+                        <input type="text" class="form-control" id="userid" name="userid"  value="<%=userid%>" readOnly>
+
                     </div>
                 </td>
               </tr>      
@@ -67,7 +67,11 @@
           </table>
        
           <div class="container mt-3" style="text-align:right;">
+          <% if(dto.getGroup_id()==0 || mode.equals("reply")) { %>
             <input type="button" class="btn btn-secondary" value="등록" onclick="goWrite()">
+           <%} else { %>
+            <input type="button" class="btn btn-secondary" value="수정" onclick="goModify()">
+           <%} %>
           </div>
           
     </div>
@@ -118,6 +122,48 @@ function goWrite()
     .fail( (error)=>{
        console.log(error);
     });
+}
+
+function goModify(){
+	  var frm = document.myform;
+	   if( frm.title.value.trim().length<10)
+	   {
+	      alert("제목을 10글자 이상 작성하세요");
+	      frm.title.focus();
+	      return false;
+	   }
+
+	   
+	   if( frm.contents.value.trim().length<10)
+	   {
+	      alert("내용을 10글자 이상 작성하세요");
+	      frm.contents.focus();
+	      return false;
+	   }
+
+	    //var frmData = new FormData(document.myform);  -- 파일전송시에 사용하자 
+	    //enctype="multipart/~"
+	    
+	    var queryString = $("form[name=myform]").serialize(); 
+	    //파일전송없을때 안정적으로 감
+	    console.log(queryString);
+	    
+	     $.ajax({
+	      url:"${commonURL}/freeboard/update",
+	      data:queryString,
+	      type:"POST",
+	      queryString
+	    })
+	    .done( (result)=>{
+	        
+	      alert("등록되었습니다.");
+	      location.href="${commonURL}/freeboard/list";
+	      
+	    })
+	    .fail( (error)=>{
+	       console.log(error);
+	    });
+	
 }
 </script>
 

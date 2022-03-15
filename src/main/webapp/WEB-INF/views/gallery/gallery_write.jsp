@@ -11,18 +11,31 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+	<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<style>
+.ck.ck-editor {
+    max-width: *;
+}
+.ck-editor__editable {
+    min-height: 400px;
+}
+ 
+</style>
 </head>
 <body>
     <%@include file="../include/nav.jsp" %>
 	<%
+	
 	GalleryDto dto = (GalleryDto)request.getAttribute("galleryDto");
+	String mode = (String)request.getAttribute("mode");
+	if(mode == null)
+		mode = "";
 	%>
 
 	<form  name="myform" method="post" enctype="multipart/form-data">	
-		<input type="text" name="id" value="<%=dto.getId()%>" />
+		<input type="hidden" name="id" value="<%=dto.getId()%>" />
 		
-    <div class="container" style="margin-top:80px">
+    <div class="container" style="margin-top:100px;">
         <h2>갤러리 쓰기</h2>
 
         <table class="table table-hover " style="margin-top: 30px;">
@@ -45,8 +58,13 @@
                 <td>작성자</td>
                 <td>
                     <div class="mb-3" style="margin-top:13px;">
+                    	<%if(!dto.getWriter().equals("")) {%>
                         <input type="text" class="form-control" id="writer" name="writer" 
                         placeholder="이름을 입력하세요" value="<%=dto.getWriter()%>">
+                        <%}else{ %>
+                        <input type="text" class="form-control" id="writer" name="writer" 
+                        value="<%=userid%>" readOnly>
+                        <%} %>
                     </div>
                 </td>
               </tr>      
@@ -60,11 +78,11 @@
               </tr>    
               
               <tr>
-                <td>이미지</td>
+                <!-- <td>이미지</td> -->
                 <td>
-                    <div class="mb-3" style="margin-top:13px;">
-                        <input type="file" class="form-control" id="upload" name="upload" 
-                        placeholder="이미지를 업로드하세요" value="<%=dto.getWriter()%>">
+                    <div class="mb-3"">
+                        <input type="hidden" class="form-control" id="image" name="image" 
+                        placeholder="이미지를 업로드하세요">
                     </div>
                 </td>
               </tr>
@@ -74,7 +92,11 @@
           </table>
        
           <div class="container mt-3" style="text-align:right;">
+          <%if(!mode.equals("update")) {%>
             <input type="button" class="btn btn-secondary" value="등록" onclick="goWrite()">
+            <%}else{ %>
+            <input type="button" class="btn btn-secondary" value="수정완료" onclick="goModify()">
+            <%} %>
           </div>
           
     </div>
@@ -84,12 +106,46 @@
 </html>
 
 <script>
+var myEditor;
+function getImageName(){
+	var frm = document.myform;
+	console.log('getImageName:-----------------------'+myEditor.getData());
+	
+	const editorData = myEditor.getData(); // <div><img>
+	
+
+   var htmlObject = document.createElement('div');
+   htmlObject.innerHTML = editorData;
+   
+   console.log("htmlObject"+htmlObject);
+   
+   
+   var list = htmlObject.querySelectorAll('img');
+   if(list.length!=0){
+      var nameList = list[0].getAttribute("src").split("/");
+      console.log("nameList"+nameList);
+      
+      var filename = nameList[nameList.length-1];
+      console.log("filename:"+filename);
+      
+      frm.image.value = filename; // upload hidden tag
+      
+      console.log(filename);
+      
+   }else{
+	   alert("이미지를 하나 이상 업로드 하셔야 합니다.");
+	   
+		return false;
+
+   }
+   
+}
 function goWrite()
 {
 	var frm = document.myform;
-	if( frm.title.value.trim().length<10)
+	if( frm.title.value.trim().length==0)
 	{
-		alert("제목을 10글자 이상 작성하세요");
+		alert("제목을 입력하세요");
 		frm.title.focus();
 		return false;
 	}
@@ -101,18 +157,76 @@ function goWrite()
 		return false;
 	}
 	
-	if( frm.comment.value.trim().length<10)
-	{
-		alert("내용을 10글자 이상 작성하세요");
-		frm.comment.focus();
+	var ret = getImageName();
+	
+	if(ret==false){
 		return false;
 	}
-
+	
 	frm.action="<%=request.getContextPath()%>/gallery/save";
 	frm.method="post";
 	frm.submit(); //서버로 전송하기 
 	
 }
+
+function goModify(){
+	  var frm = document.myform;
+	  if( frm.title.value.trim().length==0)
+		{
+			alert("제목을 입력하세요");
+			frm.title.focus();
+			return false;
+		}
+
+	    //var frmData = new FormData(document.myform);  -- 파일전송시에 사용하자 
+	    //enctype="multipart/~"
+	    
+	   	var ret = getImageName();
+	    if(ret==false){
+			return false;
+		}
+		
+	    frm.comment.value = myEditor.getData();
+	    
+	    var queryString = $("form[name=myform]").serialize(); 
+	    //파일전송없을때 안정적으로 감
+	    console.log(queryString);
+	    console.log("goModify================"+ myEditor.getData());
+	   
+   		$.ajax({
+	      url:"${commonURL}/gallery/update",
+	      data:queryString,
+	      type:"POST"
+	    })
+	    .done( (result)=>{
+	        
+	      alert("등록되었습니다.");
+	      location.href="${commonURL}/gallery/list";
+	      
+	    })
+	    .fail( (error)=>{
+	       console.log(error);
+	    });
+	
+}
+
+
+ClassicEditor
+.create( document.querySelector( '#comment' ), {
+	ckfinder: {
+        uploadUrl: '${commonURL}/ck/fileupload' // 내가 지정한 업로드 url (post로 요청감)
+	},
+	alignment: {
+        options: [ 'left', 'center', 'right' ]
+    }
+}  )
+.then( editor => {
+	 console.log( 'Editor was initialized', editor );
+     myEditor = editor;
+} )
+.catch( error => {
+        console.error( error );
+} );
 </script>
 
 
