@@ -33,7 +33,7 @@
 	<input type="hidden" name="id"  id="id" value=""/>
 	<input type="hidden" name="seq" id="seq" value=""/>
 
-    <div class="container">
+    <div class="container" style="margin-top:100px;">
         <h2>즐겨찾기 목록 (${totalCnt}건)</h2>
 
 
