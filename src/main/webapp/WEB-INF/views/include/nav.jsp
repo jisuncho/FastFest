@@ -105,7 +105,7 @@ String phone= StringUtil.nullToValue(session.getAttribute("phone"), "");
                             <li><a href="">Dropdown Menu</a></li>
                         </ul>
                     </li>
-                    <li><a href="">이달의 축제</a></li>
+                    <li><a href="http://localhost:8080/FastFest/calendar">이달의 축제</a></li>
                     
                     
                     <%if(userid.equals("")) {%>
