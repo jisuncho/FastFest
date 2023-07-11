@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class FreeBoardController {
-
+//this is a testy test
    @Resource(name="freeboardService")
    FreeBoardService service;
    
