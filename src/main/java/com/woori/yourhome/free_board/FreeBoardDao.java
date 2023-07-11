@@ -7,4 +7,5 @@ public interface FreeBoardDao {
 	void insert(FreeBoardDto dto);
 	void insert_reply(FreeBoardDto dto);
 	FreeBoardDto getView(FreeBoardDto dto);
+	//this is also a test
 }
