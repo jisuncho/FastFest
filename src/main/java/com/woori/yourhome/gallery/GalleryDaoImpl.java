@@ -8,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository("galleryDao")
 public class GalleryDaoImpl implements GalleryDao{
-
+//this is also a test
+	//testtesttest
 	@Autowired 
 	SqlSessionTemplate sm;
 	
