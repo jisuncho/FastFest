@@ -9,4 +9,7 @@ public interface GalleryDao {
 	void update(GalleryDto dto );
 	void delete(GalleryDto dto );
 	GalleryDto getView(GalleryDto dto);
+
+	//this is a test
+	//this is a real test
 }
