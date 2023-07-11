@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<%@include file="../include/nav.jsp" %> 
+<%@include file="../include/nav2.jsp" %> 
 <form name="myform" id="myform">
    <input type="hidden" name="idcheck" id="idcheck" value="N"/>
    
